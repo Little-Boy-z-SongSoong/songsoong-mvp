@@ -1,0 +1,20 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/api/enora/cities/all",
+      "destination": "https://api.enora-oah.eu/api/cities/all"
+    },
+    {
+      "source": "/api/enora/sites/all",
+      "destination": "https://api.enora-oah.eu/api/sites/all"
+    },
+    {
+      "source": "/api/enora/dashboards/city",
+      "destination": "https://api.enora-oah.eu/api/dashboards/city"
+    }
+  ]
+}

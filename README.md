@@ -22,6 +22,10 @@ The build refreshes `src/data/enoraSnapshot.json` from `/api/cities/all`, `/api/
 
 On a static host, the page can still display the bundled snapshot, but the live API badge and refresh require a same-origin proxy for those routes because the upstream API rejects direct browser cross-origin requests.
 
+## Deploy on Vercel
+
+`vercel.json` builds the Vite app and rewrites the three `/api/enora/*` reads to their matching ENORA endpoints. Vercel serves the static `dist` directory; `server.mjs` remains available for local or Node hosting. When a Vercel project is linked to this GitHub repository, pushes to the production branch can deploy automatically.
+
 ## Data and imagery
 
 Fish, invertebrate and diatom ratings select a harmonic mood. Their recorded richness changes the density of water-drop accents. Nitrate is shown with its exact published value; its relative rank in the retrieved dataset informs musical tension because the API schema does not specify a unit or safety threshold. The default site composition averages available signals, which may come from different observation dates. This is an artistic rule rather than an official water-quality score. The musical mapping is an interpretation of historical records, not a live measurement or water-safety diagnosis.
