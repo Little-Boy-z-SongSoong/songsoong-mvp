@@ -10,6 +10,7 @@ export default class AudioEngine {
     this._siteSeed = 0;
     this._liveStress = 0.5;
     this._liveRichness = 0.4;
+    this._liveNitrateRank = null;
     this._step = 0;
     this.loop = null;
   }
@@ -59,7 +60,7 @@ export default class AudioEngine {
     this.master.connect(this.analyser);
     this.master.connect(this.fftAnalyser);
     this.isInitialized = true;
-    this.updateParams(this._liveStress, this._liveRichness);
+    this.updateParams(this._liveStress, this._liveRichness, this._liveNitrateRank);
   }
 
   setCity(cityConfig) {
@@ -71,7 +72,7 @@ export default class AudioEngine {
       }
     }
     this._cityConfig = cityConfig;
-    if (this.isInitialized) this.updateParams(this._liveStress, this._liveRichness);
+    if (this.isInitialized) this.updateParams(this._liveStress, this._liveRichness, this._liveNitrateRank);
   }
 
   setSite(code) {
@@ -82,15 +83,16 @@ export default class AudioEngine {
     }
   }
 
-  updateParams(stress, richness = 0.4) {
+  updateParams(stress, richness = 0.4, nitrateRank = null) {
     if (!this.isInitialized) return;
     const tension = clamp(stress);
     const life = clamp(richness);
+    const nitrateColour = Number.isFinite(nitrateRank) ? clamp(nitrateRank) : 0;
     this.padFilter.frequency.rampTo(4200 - tension * 2850, 0.8);
     this.reedFilter.frequency.rampTo(1900 - tension * 650, 0.8);
-    this.textureFilter.frequency.rampTo(650 + tension * 500, 0.8);
+    this.textureFilter.frequency.rampTo(650 + tension * 500 + nitrateColour * 260, 0.8);
     this.reverb.wet.rampTo(0.35 - tension * 0.12, 0.8);
-    this.delay.wet.rampTo(0.17 - tension * 0.04, 0.8);
+    this.delay.wet.rampTo(0.13 - tension * 0.03 + nitrateColour * 0.1, 0.8);
     this.pad.volume.rampTo(-18 - tension * 5, 0.8);
     this.bass.volume.rampTo(-25 + tension * 5, 0.8);
     this.bell.volume.rampTo(-27 + life * 4 - tension * 10, 0.8);
@@ -130,12 +132,13 @@ export default class AudioEngine {
     this._step += 1;
   }
 
-  start(stress = 0.5, richness = 0.4) {
+  start(stress = 0.5, richness = 0.4, nitrateRank = null) {
     if (!this.isInitialized || this.isPlaying) return;
     this._liveStress = clamp(stress);
     this._liveRichness = clamp(richness);
+    this._liveNitrateRank = nitrateRank;
     this._step = 0;
-    this.updateParams(stress, richness);
+    this.updateParams(stress, richness, nitrateRank);
     this.loop = new Tone.Loop((time) => this._tick(time), '8n').start(0);
     Tone.getTransport().start();
     this.isPlaying = true;
@@ -157,10 +160,11 @@ export default class AudioEngine {
     this._step = 0;
   }
 
-  setLiveParams(stress, richness = 0.4) {
+  setLiveParams(stress, richness = 0.4, nitrateRank = null) {
     this._liveStress = clamp(stress);
     this._liveRichness = clamp(richness);
-    this.updateParams(stress, richness);
+    this._liveNitrateRank = nitrateRank;
+    this.updateParams(stress, richness, nitrateRank);
   }
 
   getWaveformData() {

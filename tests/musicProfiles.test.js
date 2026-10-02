@@ -12,7 +12,7 @@ function phrase(city, stress) {
   }));
 }
 
-test('all five cities have recognisably different four-bar themes', () => {
+test('all five cities have different four-bar scores', () => {
   const cities = Object.keys(MUSIC_PROFILES);
   for (const stress of [0.2, 0.8]) {
     const signatures = cities.map((city) => JSON.stringify(phrase(city, stress)));

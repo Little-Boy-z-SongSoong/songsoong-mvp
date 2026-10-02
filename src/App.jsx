@@ -59,9 +59,11 @@ export default function App() {
   const signal = signalKind === 'site' ? siteComposition : signals.find((item) => item.kind === signalKind) || siteComposition;
   const stress = remixStress ?? signal?.stress ?? 0.5;
   const richness = signal?.layerDensity ?? 0.4;
+  const nitrateRank = signal?.kind === 'site' || signal?.kind === 'nitrate' ? signal?.percentile ?? null : null;
   const mood = stressMood(stress);
-  const condition = remixStress === null && signal?.kind === 'nitrate' ? 'nitrate' : mood;
-  const conditionText = remixStress !== null ? `remixConditionText_${mood}` : signal?.kind === 'site' ? `siteConditionText_${mood}` : `conditionText_${condition}`;
+  const nitrateOnly = signal?.kind === 'nitrate' || signal?.basis === 'nitrate';
+  const condition = remixStress === null && nitrateOnly ? 'nitrate' : mood;
+  const conditionText = remixStress !== null ? `remixConditionText_${mood}` : signal?.kind === 'site' && !nitrateOnly ? `siteConditionText_${mood}` : `conditionText_${condition}`;
   const stats = useMemo(() => citySummary(overview, cityId), [overview, cityId]);
 
   useEffect(() => {
@@ -78,8 +80,8 @@ export default function App() {
   useEffect(() => { audioRef.current?.setCity(city); }, [city]);
   useEffect(() => { audioRef.current?.setSite(site?.code); }, [site?.code]);
   useEffect(() => {
-    if (audioRef.current?.isPlaying) audioRef.current.setLiveParams(stress, richness);
-  }, [stress, richness]);
+    if (audioRef.current?.isPlaying) audioRef.current.setLiveParams(stress, richness, nitrateRank);
+  }, [stress, richness, nitrateRank]);
 
   useEffect(() => {
     let frame;
@@ -123,14 +125,14 @@ export default function App() {
         audioRef.current.stop();
         setIsPlaying(false);
       } else {
-        audioRef.current.start(stress, richness);
+        audioRef.current.start(stress, richness, nitrateRank);
         setIsPlaying(true);
       }
     } catch {
       setAudioError(true);
       setIsPlaying(false);
     }
-  }, [city, signal, stress, richness]);
+  }, [city, signal, stress, richness, nitrateRank]);
 
   const siteMap = site ? `https://www.openstreetmap.org/?mlat=${site.latitude}&mlon=${site.longitude}#map=15/${site.latitude}/${site.longitude}` : '#';
   const activeQuality = signal?.quality ? qualityName(lang, signal.quality) : null;
@@ -249,15 +251,15 @@ export default function App() {
                 <span className="eyebrow">{t(lang, 'soundCondition')}</span>
                 <strong>{t(lang, `condition_${condition}`)}</strong>
                 <p>{t(lang, conditionText)}</p>
-                {(signal.kind !== 'nitrate' || remixStress !== null) && <div className="sound-scale" aria-hidden="true">
+                {(!nitrateOnly || remixStress !== null) && <div className="sound-scale" aria-hidden="true">
                   {['gentle', 'shifting', 'tense'].map((part) => <span key={part} className={mood === part ? 'active' : ''}>{t(lang, `soundScale${part === 'gentle' ? 'Open' : part === 'shifting' ? 'Mixed' : 'Strained'}`)}</span>)}
                 </div>}
-                {signal.kind === 'nitrate' && remixStress === null && <div className="nitrate-rank">
+                {nitrateOnly && remixStress === null && <div className="nitrate-rank">
                   <span>{t(lang, 'relativeRank')}</span><strong>{Math.round(signal.percentile * 100)}%</strong>
                   <div aria-hidden="true"><span style={{ width: `${signal.percentile * 100}%` }} /></div>
                 </div>}
               </div>}
-              <p className="reading-note">{t(lang, remixStress !== null ? 'remixNote' : signal?.kind === 'site' ? 'siteMixNote' : signal?.kind === 'nitrate' ? 'nitrateNote' : 'qualityNote')}</p>
+              <p className="reading-note">{t(lang, remixStress !== null ? 'remixNote' : signal?.kind === 'site' && nitrateOnly ? 'nitrateOnlyNote' : signal?.kind === 'site' ? 'siteMixNote' : signal?.kind === 'nitrate' ? 'nitrateNote' : 'qualityNote')}</p>
               {audioError && <p className="audio-error" role="alert">{t(lang, 'audioError')}</p>}
               <button type="button" className="button play-reading" onClick={toggleAudio} disabled={!signal}>
                 {isPlaying ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" />}

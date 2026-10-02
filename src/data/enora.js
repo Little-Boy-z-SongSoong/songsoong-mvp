@@ -1,4 +1,5 @@
 import snapshot from './enoraSnapshot.json';
+export { compositionForSite } from './composition';
 
 const paths = {
   cities: '/api/enora/cities/all',
@@ -85,22 +86,6 @@ export function signalsForSite(overview, code) {
       stress: qualityStress[row[field.quality]] ?? 0.5,
       layerDensity: richness === null ? 0.35 : Math.max(0.1, Math.min(1, richness / maxRichness)) }];
   });
-}
-
-// An artistic site portrait, not an official combined water-quality score.
-// Each available signal contributes equally even when observations have different dates.
-export function compositionForSite(signals) {
-  if (!signals.length) return null;
-  const richnessSignals = signals.filter((item) => item.richness !== null);
-  return {
-    kind: 'site',
-    date: signals.map((item) => item.date).sort().at(-1),
-    stress: signals.reduce((sum, item) => sum + item.stress, 0) / signals.length,
-    layerDensity: richnessSignals.length
-      ? richnessSignals.reduce((sum, item) => sum + item.layerDensity, 0) / richnessSignals.length
-      : 0.4,
-    signalCount: signals.length,
-  };
 }
 
 export function siteOptions(overview, cityId) {
