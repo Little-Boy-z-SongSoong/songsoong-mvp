@@ -2,7 +2,11 @@
 
 An interactive river soundscape built from published ENORA observations. Select a city and sampling site to hear a composition built from its available ecological signals. Isolate each signal to hear its contribution. The interface defaults to English and supports Vietnamese.
 
+![SongSoong opening screen with ENORA data connected](docs/screenshots/hero.jpg)
+
 The guided listening challenge compares two real Coimbra invertebrate observations from 6 June 2023: Conraria (C17, Good, richness 39) and Corujeira (C20, Poor, richness 17). Visitors hear two 12-second compositions, guess which rating indicates greater ecological pressure, and then see the source values and musical mapping. If the live API changes or is unavailable, this comparison uses the bundled ENORA snapshot. The ratings apply to invertebrates and do not establish whether the water is safe to use.
+
+![The listening comparison revealing the Coimbra observations](docs/screenshots/challenge-reveal.jpg)
 
 The closing link leads to the official OneAquaHealth Citizen Science App for visitors who want to observe and report their own waterways. SongSoong does not collect citizen observations.
 

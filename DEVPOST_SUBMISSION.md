@@ -5,6 +5,8 @@ Track 4: Awareness & Storytelling · OneAquaHealth IEEE Global Hackathon 2026
 Live prototype: https://songsoong-mvp.vercel.app/  
 Source code: https://github.com/Little-Boy-z-SongSoong/songsoong-mvp
 
+Screenshots from the live prototype: [opening screen](docs/screenshots/hero.jpg) · [listening challenge and source values](docs/screenshots/challenge-reveal.jpg)
+
 ## Short pitch
 
 What if a river's ecological observations could be heard? SongSoong turns published OneAquaHealth data from five European cities into distinct, interactive musical portraits. Listeners can compare two real observations, guess what the difference means, and inspect the records behind the sound.
