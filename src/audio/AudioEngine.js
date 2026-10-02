@@ -1,12 +1,7 @@
 import * as Tone from 'tone';
-import { chordFor, melodyNote, siteSeedFromCode } from './musicProfiles';
+import { chordFor, melodyNote, scoreFor, siteSeedFromCode } from './musicProfiles';
 
 const clamp = (value) => Math.max(0, Math.min(1, Number(value) || 0));
-const melodyPatterns = [
-  [1, 3, 5, 7], [1, 4, 5, 7], [1, 3, 6, 7],
-  [1, 2, 5, 7], [1, 3, 5, 6],
-];
-
 export default class AudioEngine {
   constructor() {
     this.isPlaying = false;
@@ -23,7 +18,7 @@ export default class AudioEngine {
     if (this.isInitialized) return;
     await Tone.start();
 
-    this.master = new Tone.Gain(0.82).toDestination();
+    this.master = new Tone.Gain(0.78).toDestination();
     this.reverb = new Tone.Reverb({ decay: 4.5, preDelay: 0.025, wet: 0.3 }).connect(this.master);
     this.delay = new Tone.FeedbackDelay({ delayTime: '8n.', feedback: 0.16, wet: 0.17 }).connect(this.reverb);
     this.padFilter = new Tone.Filter({ type: 'lowpass', frequency: 2500, rolloff: -12, Q: 0.65 }).connect(this.reverb);
@@ -35,11 +30,13 @@ export default class AudioEngine {
       envelope: { attack: 0.85, decay: 0.25, sustain: 0.7, release: 2.7 },
       volume: -19,
     }).connect(this.padChorus);
-    this.lead = new Tone.Synth({
-      oscillator: { type: 'sine' },
-      envelope: { attack: 0.025, decay: 0.26, sustain: 0.16, release: 1.1 },
-      volume: -20,
-    }).connect(this.delay);
+    this.reedFilter = new Tone.Filter({ type: 'lowpass', frequency: 1450, rolloff: -12 }).connect(this.delay);
+    this.leads = {
+      glass: new Tone.Synth({ oscillator: { type: 'sine' }, envelope: { attack: 0.012, decay: 0.75, sustain: 0.06, release: 1.1 }, volume: -17 }).connect(this.delay),
+      pluck: new Tone.Synth({ oscillator: { type: 'triangle' }, envelope: { attack: 0.006, decay: 0.22, sustain: 0.06, release: 0.35 }, volume: -18 }).connect(this.reverb),
+      reed: new Tone.Synth({ oscillator: { type: 'sawtooth' }, envelope: { attack: 0.075, decay: 0.2, sustain: 0.25, release: 0.42 }, volume: -25 }).connect(this.reedFilter),
+      warm: new Tone.Synth({ oscillator: { type: 'triangle' }, envelope: { attack: 0.045, decay: 0.38, sustain: 0.3, release: 0.6 }, volume: -17 }).connect(this.delay),
+    };
     this.bass = new Tone.Synth({
       oscillator: { type: 'sine' },
       envelope: { attack: 0.09, decay: 0.35, sustain: 0.3, release: 1.2 },
@@ -66,6 +63,13 @@ export default class AudioEngine {
   }
 
   setCity(cityConfig) {
+    if (this._cityConfig?.id !== cityConfig?.id) {
+      this._step = 0;
+      if (this.isInitialized) {
+        this.pad.releaseAll();
+        Object.values(this.leads).forEach((lead) => lead.triggerRelease());
+      }
+    }
     this._cityConfig = cityConfig;
     if (this.isInitialized) this.updateParams(this._liveStress, this._liveRichness);
   }
@@ -82,44 +86,46 @@ export default class AudioEngine {
     if (!this.isInitialized) return;
     const tension = clamp(stress);
     const life = clamp(richness);
-    this.padFilter.frequency.rampTo(3600 - tension * 1900, 0.8);
+    this.padFilter.frequency.rampTo(4200 - tension * 2850, 0.8);
+    this.reedFilter.frequency.rampTo(1900 - tension * 650, 0.8);
     this.textureFilter.frequency.rampTo(650 + tension * 500, 0.8);
-    this.reverb.wet.rampTo(0.33 - tension * 0.07, 0.8);
-    this.delay.wet.rampTo(0.13 + tension * 0.05, 0.8);
-    this.lead.volume.rampTo(-19 - tension * 3, 0.8);
-    this.bell.volume.rampTo(-30 + life * 5, 0.8);
-    this.texture.volume.rampTo(-49 + tension * 7, 0.8);
-    Tone.getTransport().bpm.rampTo((this._cityConfig?.bpm || 60) + 18 + tension * 8, 1);
+    this.reverb.wet.rampTo(0.35 - tension * 0.12, 0.8);
+    this.delay.wet.rampTo(0.17 - tension * 0.04, 0.8);
+    this.pad.volume.rampTo(-18 - tension * 5, 0.8);
+    this.bass.volume.rampTo(-25 + tension * 5, 0.8);
+    this.bell.volume.rampTo(-27 + life * 4 - tension * 10, 0.8);
+    this.texture.volume.rampTo(-56 + tension * 15, 0.8);
+    Tone.getTransport().bpm.rampTo((this._cityConfig?.bpm || 60) + tension * 11, 1);
   }
 
   _tick(time) {
     const step = this._step % 8;
     const bar = Math.floor(this._step / 8);
     const cityId = this._cityConfig?.id || 'ghent';
-    const chord = chordFor(cityId, this._liveStress, bar, this._siteSeed);
+    const profile = scoreFor(cityId);
+    const tension = clamp(this._liveStress);
+    const chord = chordFor(cityId, tension, bar);
 
     if (step === 0) {
-      this.pad.triggerAttackRelease(chord.pad, '2n.', time, 0.55);
-      this.bass.triggerAttackRelease(chord.bass, '2n', time, 0.62);
-      if (bar % 4 === 0) this.texture.triggerAttackRelease('2n', time, 0.2);
+      this.pad.triggerAttackRelease(chord.pad, '2n.', time, 0.52);
+      if (bar % 4 === 0 || tension > 0.6) this.texture.triggerAttackRelease('4n', time, 0.2 + tension * 0.16);
     }
-    if (step === 4 && this._liveStress > 0.68) {
-      this.bass.triggerAttackRelease(chord.bass, '8n', time, 0.28);
+    if (profile.bassSteps.includes(step) || (tension > 0.72 && step === 6)) {
+      this.bass.triggerAttackRelease(chord.bass, step === 0 ? '4n' : '8n', time, step === 0 ? 0.59 : 0.27 + tension * 0.1);
     }
 
-    const phraseStep = melodyPatterns[this._siteSeed % melodyPatterns.length].indexOf(step);
-    if (phraseStep !== -1 && !(bar % 8 === 7 && phraseStep === 2)) {
-      const note = melodyNote(chord, cityId, bar, phraseStep, this._siteSeed);
-      this.lead.triggerAttackRelease(note, phraseStep === 3 ? '4n' : '8n', time, 0.48);
+    const phraseStep = profile.leadSteps.indexOf(step);
+    if (phraseStep !== -1 && !(bar % 8 === 7 && phraseStep === 1)) {
+      const note = melodyNote(cityId, tension, bar, phraseStep, this._siteSeed);
+      this.leads[profile.instrument].triggerAttackRelease(note, profile.noteLength, time, 0.4 + (1 - tension) * 0.12);
     }
 
     const life = clamp(this._liveRichness);
-    const addDrop = life > 0.68 ? step === 2 || step === 6
-      : life > 0.35 ? step === 6
-        : step === 6 && bar % 2 === 0;
+    const addDrop = profile.accentSteps.includes(step) && tension < 0.78 &&
+      (life > 0.63 || (life > 0.31 && (bar + this._siteSeed) % 2 === 0) || bar % 4 === 0);
     if (addDrop) {
-      const note = melodyNote(chord, cityId, bar, step === 2 ? 1 : 3, this._siteSeed);
-      this.bell.triggerAttackRelease(note, '16n', time, 0.37);
+      const note = melodyNote(cityId, tension, bar, step, this._siteSeed);
+      this.bell.triggerAttackRelease(note, '16n', time, 0.32 + life * 0.12);
     }
     this._step += 1;
   }
@@ -145,7 +151,7 @@ export default class AudioEngine {
       this.loop = null;
     }
     this.pad.releaseAll();
-    this.lead.triggerRelease();
+    Object.values(this.leads).forEach((lead) => lead.triggerRelease());
     this.bass.triggerRelease();
     this.bell.triggerRelease();
     this._step = 0;
@@ -167,8 +173,8 @@ export default class AudioEngine {
 
   dispose() {
     this.stop();
-    for (const node of [this.pad, this.lead, this.bass, this.bell, this.texture,
-      this.padChorus, this.padFilter, this.textureFilter, this.delay, this.reverb,
+    for (const node of [this.pad, ...Object.values(this.leads || {}), this.bass, this.bell, this.texture,
+      this.padChorus, this.padFilter, this.reedFilter, this.textureFilter, this.delay, this.reverb,
       this.analyser, this.fftAnalyser, this.master]) node?.dispose();
     this.isInitialized = false;
   }

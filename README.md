@@ -1,12 +1,13 @@
 # SongSoong
 
-An interactive river soundscape built from published ENORA observations. Select a city and sampling site to hear a composition built from its available ecological signals. Isolate each signal to hear its contribution. The interface defaults to Vietnamese and supports English.
+An interactive river soundscape built from published ENORA observations. Select a city and sampling site to hear a composition built from its available ecological signals. Isolate each signal to hear its contribution. The interface defaults to English and supports Vietnamese.
 
 ## Run locally
 
 ```bash
 npm install
 npm run dev
+npm test
 ```
 
 Vite proxies `/api/enora/*` to the public ENORA API. The development URL is `http://localhost:5173`.
@@ -30,6 +31,6 @@ On a static host, the page can still display the bundled snapshot, but the live 
 
 Fish, invertebrate and diatom ratings select a harmonic mood. Their recorded richness changes the density of water-drop accents. Nitrate is shown with its exact published value; its relative rank in the retrieved dataset informs musical tension because the API schema does not specify a unit or safety threshold. The default site composition averages available signals, which may come from different observation dates. This is an artistic rule rather than an official water-quality score. The musical mapping is an interpretation of historical records, not a live measurement or water-safety diagnosis.
 
-The sound engine uses consonant city-specific chord progressions, a short lead melody, soft bass, subtle water accents and eight-bar phrasing. A deterministic motif derived from the site code gives each site a repeatable musical identity. Higher musical tension now shifts toward a reflective minor mood and warmer filtering instead of harsh distortion.
+Each city has its own chord vocabulary, melodic scale, rhythm, bass pulse and lead instrument. Site codes add repeatable small variations within the city's theme. High or Good ecological ratings sound brighter and more open; Moderate ratings alternate between open and darker harmony; Poor or Bad ratings use lower melodies, stronger bass and subtle rough texture. Nitrate affects this musical condition only through its relative rank in the retrieved dataset. The UI shows that rank and explains the mapping without presenting it as a water-safety score.
 
 Only the five field photographs in `public-live/photos/` are included in the production build. Their original URLs and source pages are recorded in [PHOTO_SOURCES.md](PHOTO_SOURCES.md). The photos depict the city area and are not presented as photos of each selected sampling site.

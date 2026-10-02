@@ -8,6 +8,7 @@
     "sync:data": "node scripts/sync-enora.mjs",
     "prebuild": "node scripts/sync-enora.mjs",
     "build": "vite build",
+    "test": "node --test",
     "preview": "vite preview",
     "start": "node server.mjs"
   },

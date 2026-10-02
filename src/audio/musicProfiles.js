@@ -1,60 +1,120 @@
-// Curated, consonant progressions. The environmental data selects their mood,
-// pace and ornament density; it never maps a measurement directly to pitch.
-const chords = {
-  Dmaj7: { pad: ['D4', 'F#4', 'A4', 'C#5'], bass: 'D2' },
-  Aadd9: { pad: ['A3', 'C#4', 'E4', 'B4'], bass: 'A2' },
-  Bm7: { pad: ['B3', 'D4', 'F#4', 'A4'], bass: 'B2' },
-  Gmaj7: { pad: ['G3', 'B3', 'D4', 'F#4'], bass: 'G2' },
-  Cmaj7: { pad: ['C4', 'E4', 'G4', 'B4'], bass: 'C3' },
-  G6: { pad: ['G3', 'B3', 'D4', 'E4'], bass: 'G2' },
-  Am7: { pad: ['A3', 'C4', 'E4', 'G4'], bass: 'A2' },
-  Fmaj7: { pad: ['F3', 'A3', 'C4', 'E4'], bass: 'F2' },
-  Em7: { pad: ['E3', 'G3', 'B3', 'D4'], bass: 'E2' },
-  Dadd9: { pad: ['D4', 'F#4', 'A4', 'E5'], bass: 'D2' },
-  Dm7: { pad: ['D4', 'F4', 'A4', 'C5'], bass: 'D2' },
-  Bbmaj7: { pad: ['Bb3', 'D4', 'F4', 'A4'], bass: 'Bb2' },
-};
+// Published observations select a musical condition. These are composed city
+// themes, not pitches calculated from measurements or safety thresholds.
+const chord = (pad, bass) => ({ pad, bass });
 
 export const MUSIC_PROFILES = {
   oslo: {
-    bright: ['Dmaj7', 'Aadd9', 'Bm7', 'Gmaj7'],
-    reflective: ['Bm7', 'Gmaj7', 'Dmaj7', 'Aadd9'],
-    motif: [0, 2, 1, 2],
+    instrument: 'glass', leadSteps: [0, 4], accentSteps: [3, 7], bassSteps: [0],
+    motif: [0, 3, 4, 2, 1, 3], noteLength: '4n',
+    clearScale: ['D5', 'E5', 'F#5', 'A5', 'B5', 'C#6'],
+    strainedScale: ['B4', 'C#5', 'D5', 'F#5', 'A5', 'B5'],
+    clear: [
+      chord(['D4', 'F#4', 'A4', 'E5'], 'D2'),
+      chord(['E4', 'G#4', 'B4', 'F#5'], 'E2'),
+      chord(['B3', 'D4', 'F#4', 'C#5'], 'B2'),
+      chord(['G3', 'B3', 'D4', 'A4'], 'G2'),
+    ],
+    strained: [
+      chord(['B3', 'D4', 'F#4', 'C#5'], 'B1'),
+      chord(['G3', 'B3', 'D4', 'F#4'], 'G2'),
+      chord(['E3', 'G3', 'B3', 'D4'], 'E2'),
+      chord(['A3', 'D4', 'E4', 'G4'], 'A2'),
+    ],
   },
   benevento: {
-    bright: ['Cmaj7', 'G6', 'Am7', 'Fmaj7'],
-    reflective: ['Am7', 'Fmaj7', 'Cmaj7', 'G6'],
-    motif: [1, 0, 2, 1],
+    instrument: 'pluck', leadSteps: [0, 2, 3, 5, 6], accentSteps: [2, 5], bassSteps: [0, 3, 6],
+    motif: [0, 2, 4, 3, 1, 2, 0, 4], noteLength: '16n',
+    clearScale: ['C5', 'D5', 'E5', 'G5', 'A5', 'C6'],
+    strainedScale: ['A4', 'B4', 'C5', 'D5', 'E5', 'G5'],
+    clear: [
+      chord(['C4', 'E4', 'G4', 'A4'], 'C2'),
+      chord(['F3', 'A3', 'C4', 'E4'], 'F2'),
+      chord(['G3', 'B3', 'D4', 'E4'], 'G2'),
+      chord(['C4', 'E4', 'G4', 'B4'], 'C2'),
+    ],
+    strained: [
+      chord(['A3', 'C4', 'E4', 'B4'], 'A1'),
+      chord(['D4', 'F4', 'A4', 'C5'], 'D2'),
+      chord(['E3', 'A3', 'B3', 'D4'], 'E2'),
+      chord(['A3', 'C4', 'E4', 'G4'], 'A1'),
+    ],
   },
   ghent: {
-    bright: ['Gmaj7', 'Dadd9', 'Em7', 'Cmaj7'],
-    reflective: ['Em7', 'Cmaj7', 'Gmaj7', 'Dadd9'],
-    motif: [2, 1, 0, 1],
+    instrument: 'reed', leadSteps: [0, 3, 6], accentSteps: [2, 5], bassSteps: [0, 4],
+    motif: [2, 1, 3, 0, 2, 4], noteLength: '8n.',
+    clearScale: ['G4', 'A4', 'B4', 'D5', 'E5', 'G5'],
+    strainedScale: ['E4', 'G4', 'A4', 'B4', 'D5', 'E5'],
+    clear: [
+      chord(['G3', 'B3', 'D4', 'E4'], 'G2'),
+      chord(['C4', 'E4', 'G4', 'B4'], 'C2'),
+      chord(['A3', 'C4', 'E4', 'G4'], 'A2'),
+      chord(['D4', 'G4', 'A4', 'C5'], 'D2'),
+    ],
+    strained: [
+      chord(['E3', 'G3', 'B3', 'F#4'], 'E2'),
+      chord(['C4', 'E4', 'G4', 'B4'], 'C2'),
+      chord(['A3', 'C4', 'E4', 'B4'], 'A1'),
+      chord(['B3', 'E4', 'F#4', 'A4'], 'B1'),
+    ],
   },
   toulouse: {
-    bright: ['Cmaj7', 'Am7', 'Fmaj7', 'G6'],
-    reflective: ['Am7', 'Fmaj7', 'Cmaj7', 'G6'],
-    motif: [0, 1, 2, 0],
+    instrument: 'warm', leadSteps: [0, 2, 4, 7], accentSteps: [1, 5], bassSteps: [0, 2, 4],
+    motif: [0, 1, 3, 4, 2, 1, 5], noteLength: '8n',
+    clearScale: ['Bb4', 'C5', 'D5', 'F5', 'G5', 'Bb5'],
+    strainedScale: ['G4', 'A4', 'Bb4', 'C5', 'D5', 'F5'],
+    clear: [
+      chord(['Bb3', 'D4', 'F4', 'C5'], 'Bb2'),
+      chord(['G3', 'Bb3', 'D4', 'F4'], 'G2'),
+      chord(['C4', 'Eb4', 'G4', 'D5'], 'C2'),
+      chord(['F3', 'A3', 'C4', 'Eb4'], 'F2'),
+    ],
+    strained: [
+      chord(['G3', 'Bb3', 'D4', 'A4'], 'G2'),
+      chord(['Eb3', 'G3', 'Bb3', 'D4'], 'Eb2'),
+      chord(['C4', 'Eb4', 'G4', 'Bb4'], 'C2'),
+      chord(['D4', 'G4', 'A4', 'C5'], 'D2'),
+    ],
   },
   coimbra: {
-    bright: ['Fmaj7', 'Cmaj7', 'Dm7', 'Bbmaj7'],
-    reflective: ['Dm7', 'Bbmaj7', 'Fmaj7', 'Cmaj7'],
-    motif: [1, 2, 0, 1],
+    instrument: 'pluck', leadSteps: [0, 1, 4, 5, 7], accentSteps: [3, 6], bassSteps: [0, 5],
+    motif: [4, 3, 1, 2, 0, 1, 4, 2], noteLength: '16n',
+    clearScale: ['F4', 'G4', 'A4', 'C5', 'D5', 'F5'],
+    strainedScale: ['D4', 'E4', 'F4', 'A4', 'C5', 'D5'],
+    clear: [
+      chord(['F3', 'A3', 'C4', 'E4'], 'F2'),
+      chord(['G3', 'Bb3', 'D4', 'F4'], 'G2'),
+      chord(['C4', 'F4', 'G4', 'Bb4'], 'C2'),
+      chord(['F3', 'A3', 'C4', 'D4'], 'F2'),
+    ],
+    strained: [
+      chord(['D4', 'F4', 'A4', 'E5'], 'D2'),
+      chord(['Bb3', 'D4', 'F4', 'A4'], 'Bb1'),
+      chord(['G3', 'Bb3', 'D4', 'F4'], 'G2'),
+      chord(['A3', 'D4', 'E4', 'G4'], 'A1'),
+    ],
   },
 };
 
-export function chordFor(cityId, stress, bar, siteSeed = 0) {
-  const profile = MUSIC_PROFILES[cityId] || MUSIC_PROFILES.ghent;
-  const reflective = stress >= 0.65 || (stress >= 0.32 && Math.floor(bar / 4) % 2 === 1);
-  const progression = reflective ? profile.reflective : profile.bright;
-  return chords[progression[(bar + siteSeed % 4) % progression.length]];
+export function musicCondition(stress, bar = 0) {
+  if (stress >= 0.66) return 'strained';
+  if (stress >= 0.34 && Math.floor(bar / 2) % 2 === 1) return 'strained';
+  return 'clear';
 }
 
-export function melodyNote(chord, cityId, bar, phraseStep, siteSeed = 0) {
-  const profile = MUSIC_PROFILES[cityId] || MUSIC_PROFILES.ghent;
-  const position = (phraseStep + siteSeed % 3) % profile.motif.length;
-  const chordTone = chord.pad[(profile.motif[position] + bar % 2) % chord.pad.length];
-  return chordTone.replace(/\d+$/, '5');
+export function scoreFor(cityId) {
+  return MUSIC_PROFILES[cityId] || MUSIC_PROFILES.ghent;
+}
+
+export function chordFor(cityId, stress, bar) {
+  const profile = scoreFor(cityId);
+  return profile[musicCondition(stress, bar)][bar % profile.clear.length];
+}
+
+export function melodyNote(cityId, stress, bar, phraseStep, siteSeed = 0) {
+  const profile = scoreFor(cityId);
+  const scale = profile[`${musicCondition(stress, bar)}Scale`];
+  const variant = Math.floor(bar / 4) % 2 === 1 ? siteSeed % 2 : 0;
+  return scale[profile.motif[(phraseStep + bar + variant) % profile.motif.length]];
 }
 
 export function siteSeedFromCode(code = '') {
