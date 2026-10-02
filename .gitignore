@@ -7,3 +7,8 @@ public/
 !.env.example
 *.log
 .DS_Store
+demo/segments/
+demo/frame-*.jpg
+demo/tts_test.mp3
+demo/SongSoong_Devpost_Demo.mp4
+demo/SongSoong_Devpost_Demo_untrimmed.mp4

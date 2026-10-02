@@ -4,6 +4,8 @@ OneAquaHealth publishes valuable observations about urban waterways, but ecologi
 
 ## What it does
 
+**Try it in one minute, with sound on:** [Open the Coimbra listening challenge](https://songsoong-mvp.vercel.app/#listen-challenge), play A and B, choose the one that sounds under more ecological pressure, and reveal the two published records.
+
 Little Boy'z SongSoong turns published ENORA observations from Oslo, Benevento, Ghent, Toulouse, and Coimbra into interactive musical portraits. Visitors choose a real sampling site and hear a composition shaped by its available ecological signals. Biological ratings influence musical tension; recorded organism richness changes the density of water-drop accents. Each city has its own instrument, scale, chords, melody, and rhythm. Visitors can isolate a signal, see its value and observation date, open the site on a map, and try a clearly labelled hypothetical remix.
 
 The guided **Hear the difference** challenge makes the idea tangible in about a minute. Listeners compare two invertebrate observations from Coimbra on the same day, guess which suggests greater ecological pressure, then reveal the records: Conraria (C17) is rated Good with richness 39; Corujeira (C20) is rated Poor with richness 17. The experience closes with a link to OneAquaHealth's official Citizen Science App for people who want to learn about and observe waterways themselves.
