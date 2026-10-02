@@ -1,5 +1,6 @@
 import snapshot from './enoraSnapshot.json';
 export { compositionForSite } from './composition';
+import { ecologicalStress, richnessLayerDensity } from './composition';
 
 const paths = {
   cities: '/api/enora/cities/all',
@@ -60,7 +61,6 @@ const signalFields = [
   { kind: 'nitrate', value: 'nitrate' },
 ];
 
-const qualityStress = { High: 0.08, Good: 0.25, Moderate: 0.49, Poor: 0.73, Bad: 0.92 };
 
 export function observationsForSite(overview, code) {
   return overview.observations
@@ -83,8 +83,8 @@ export function signalsForSite(overview, code) {
     const categoryRichness = overview.observations.map((item) => item[field.richness]).filter((value) => Number.isFinite(value));
     const maxRichness = Math.max(1, ...categoryRichness);
     return [{ kind: field.kind, id: row.id, date: row.date, quality: row[field.quality], richness,
-      stress: qualityStress[row[field.quality]] ?? 0.5,
-      layerDensity: richness === null ? 0.35 : Math.max(0.1, Math.min(1, richness / maxRichness)) }];
+      stress: ecologicalStress[row[field.quality]] ?? 0.5,
+      layerDensity: richnessLayerDensity(richness, maxRichness) }];
   });
 }
 

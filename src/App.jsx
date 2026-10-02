@@ -3,6 +3,7 @@ import { ArrowDown, ArrowRight, ArrowUpRight, AudioLines, Compass, Droplets, Fis
 import { t } from './i18n';
 import { CITIES, getCityById } from './data/cities';
 import { CITY_PRESENTATION, citySummary, compositionForSite, fallbackOverview, fetchOverview, formatObservationDate, observationsForSite, signalsForSite, siteOptions } from './data/enora';
+import { listeningChallengePair } from './data/listeningChallenge';
 import AudioEngine from './audio/AudioEngine';
 import AudioVisualizer from './components/AudioVisualizer';
 
@@ -41,7 +42,13 @@ export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [analyserData, setAnalyserData] = useState(null);
   const [audioError, setAudioError] = useState(false);
+  const [challengeClip, setChallengeClip] = useState(null);
+  const [challengeGuess, setChallengeGuess] = useState(null);
+  const [challengeAudioError, setChallengeAudioError] = useState(false);
   const audioRef = useRef(null);
+  const challengeClipRef = useRef(null);
+  const challengeTimerRef = useRef(null);
+  const audioBusyRef = useRef(false);
 
   useEffect(() => {
     document.documentElement.lang = lang;
@@ -72,6 +79,7 @@ export default function App() {
   const condition = remixStress === null && nitrateOnly ? 'nitrate' : mood;
   const conditionText = remixStress !== null ? `remixConditionText_${mood}` : signal?.kind === 'site' && !nitrateOnly ? `siteConditionText_${mood}` : `conditionText_${condition}`;
   const stats = useMemo(() => citySummary(overview, cityId), [overview, cityId]);
+  const challengePair = useMemo(() => listeningChallengePair(overview, fallbackOverview), [overview]);
 
   useEffect(() => {
     let mounted = true;
@@ -81,14 +89,14 @@ export default function App() {
 
   useEffect(() => {
     audioRef.current = new AudioEngine();
-    return () => audioRef.current?.dispose();
+    return () => { clearTimeout(challengeTimerRef.current); audioRef.current?.dispose(); };
   }, []);
 
   useEffect(() => { audioRef.current?.setCity(city); }, [city]);
   useEffect(() => { audioRef.current?.setSite(site?.code); }, [site?.code]);
   useEffect(() => {
-    if (audioRef.current?.isPlaying) audioRef.current.setLiveParams(stress, richness, nitrateRank);
-  }, [stress, richness, nitrateRank]);
+    if (isPlaying && !challengeClipRef.current && audioRef.current?.isPlaying) audioRef.current.setLiveParams(stress, richness, nitrateRank);
+  }, [isPlaying, stress, richness, nitrateRank]);
 
   useEffect(() => {
     let frame;
@@ -100,46 +108,102 @@ export default function App() {
     return () => cancelAnimationFrame(frame);
   }, []);
 
+  const stopChallenge = useCallback(() => {
+    clearTimeout(challengeTimerRef.current);
+    if (challengeClipRef.current && audioRef.current?.isPlaying) audioRef.current.stop();
+    challengeClipRef.current = null;
+    setChallengeClip(null);
+  }, []);
+
   const changeCity = useCallback((id) => {
+    stopChallenge();
     setCityId(id);
     setSiteCode(null);
     setSignalKind('site');
     setRemixStress(null);
     setShowAllRecords(false);
-  }, []);
+  }, [stopChallenge]);
 
   const changeSite = useCallback((code) => {
+    stopChallenge();
     setSiteCode(code);
     setSignalKind('site');
     setRemixStress(null);
     setShowAllRecords(false);
-  }, []);
+  }, [stopChallenge]);
 
   const changeSignal = useCallback((kind) => {
+    stopChallenge();
     setSignalKind(kind);
     setRemixStress(null);
-  }, []);
+  }, [stopChallenge]);
+
+  const playChallenge = useCallback(async (key) => {
+    const clip = challengePair?.find((item) => item.key === key);
+    if (!clip || !audioRef.current || audioBusyRef.current) return;
+    if (challengeClipRef.current === key) { stopChallenge(); return; }
+    audioBusyRef.current = true;
+    try {
+      setChallengeAudioError(false);
+      stopChallenge();
+      if (audioRef.current.isPlaying) audioRef.current.stop();
+      setIsPlaying(false);
+      await audioRef.current.init();
+      audioRef.current.setCity(getCityById('coimbra'));
+      audioRef.current.setSite(clip.code);
+      audioRef.current.start(clip.signal.stress, clip.signal.layerDensity);
+      challengeClipRef.current = key;
+      setChallengeClip(key);
+      challengeTimerRef.current = setTimeout(() => {
+        if (challengeClipRef.current === key) stopChallenge();
+      }, 12000);
+    } catch {
+      stopChallenge();
+      setChallengeAudioError(true);
+    } finally {
+      audioBusyRef.current = false;
+    }
+  }, [challengePair, stopChallenge]);
 
   const toggleAudio = useCallback(async () => {
-    if (!signal || !audioRef.current) return;
+    if (!signal || !audioRef.current || audioBusyRef.current) return;
+    audioBusyRef.current = true;
     try {
       setAudioError(false);
-      if (!audioRef.current.isInitialized) {
-        await audioRef.current.init();
-        audioRef.current.setCity(city);
-      }
-      if (audioRef.current.isPlaying) {
+      if (challengeClipRef.current) stopChallenge();
+      await audioRef.current.init();
+      audioRef.current.setCity(city);
+      audioRef.current.setSite(site?.code);
+      if (isPlaying && audioRef.current.isPlaying) {
         audioRef.current.stop();
         setIsPlaying(false);
       } else {
+        if (audioRef.current.isPlaying) audioRef.current.stop();
         audioRef.current.start(stress, richness, nitrateRank);
         setIsPlaying(true);
       }
     } catch {
       setAudioError(true);
       setIsPlaying(false);
+    } finally {
+      audioBusyRef.current = false;
     }
-  }, [city, signal, stress, richness, nitrateRank]);
+  }, [city, site?.code, signal, stress, richness, nitrateRank, isPlaying, stopChallenge]);
+
+  const revealChallenge = useCallback((key) => {
+    stopChallenge();
+    setChallengeGuess(key);
+  }, [stopChallenge]);
+
+  const exploreChallengeSite = useCallback((code) => {
+    stopChallenge();
+    if (audioRef.current?.isPlaying) audioRef.current.stop();
+    setIsPlaying(false);
+    setCityId('coimbra');
+    setSiteCode(code);
+    setSignalKind('macro');
+    setRemixStress(null);
+  }, [stopChallenge]);
 
   const siteMap = site ? `https://www.openstreetmap.org/?mlat=${site.latitude}&mlon=${site.longitude}#map=15/${site.latitude}/${site.longitude}` : '#';
   const activeQuality = signal?.quality ? qualityName(lang, signal.quality) : null;
@@ -177,7 +241,7 @@ export default function App() {
               {isPlaying ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" />}
               {t(lang, isPlaying ? 'pause' : 'listenNow')}
             </button>
-            <a href="#explore" className="button button-outline">{t(lang, 'exploreData')} <ArrowDown size={17} /></a>
+            <a href="#listen-challenge" className="button button-outline">{t(lang, 'tryChallenge')} <ArrowDown size={17} /></a>
           </div>
           <div className="hero-flow" aria-label={t(lang, 'flowLabel')}>
             <span>{t(lang, 'flow1')}</span><ArrowRight size={15} /><span>{t(lang, 'flow2')}</span><ArrowRight size={15} /><span>{t(lang, 'flow3')}</span>
@@ -208,6 +272,36 @@ export default function App() {
         <section className="project-section" aria-labelledby="project-title">
           <div><span className="eyebrow">{t(lang, 'projectEyebrow')}</span><h2 id="project-title">{t(lang, 'projectTitle')}</h2></div>
           <div className="project-story"><p>{t(lang, 'projectDescription')}</p><div className="project-links"><a href="https://www.oneaquahealth.eu/" target="_blank" rel="noreferrer">{t(lang, 'projectLink')} <ArrowUpRight size={15} aria-hidden="true" /></a><a href="https://api.enora-oah.eu/swagger-ui/index.html" target="_blank" rel="noreferrer">{t(lang, 'projectDataLink')} <ArrowUpRight size={15} aria-hidden="true" /></a></div></div>
+        </section>
+
+        <section id="listen-challenge" className="challenge-section" aria-labelledby="challenge-title">
+          <div className="section-heading"><div><span className="eyebrow">{t(lang, 'challengeEyebrow')}</span><h2 id="challenge-title">{t(lang, 'challengeTitle')}</h2></div><p>{t(lang, 'challengeDescription')}</p></div>
+          <div className="challenge-panel">
+            <div className="challenge-topline"><span>{t(lang, 'challengeContext')}</span><span>01 / 03</span></div>
+            <div className="challenge-grid">
+              {challengePair?.map((clip) => <article key={clip.key} className={`challenge-card ${challengeClip === clip.key ? 'is-playing' : ''}`}>
+                <div className="challenge-card-top"><span className="challenge-letter">{clip.key}</span><span className="challenge-record-label">{challengeGuess ? `${t(lang, 'challengeRating')}: ${qualityName(lang, clip.signal.quality)}` : t(lang, 'challengeHidden')}</span></div>
+                <AudioLines size={38} strokeWidth={1.3} aria-hidden="true" />
+                <button type="button" className="challenge-play" onClick={() => playChallenge(clip.key)} aria-pressed={challengeClip === clip.key}>
+                  {challengeClip === clip.key ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" />}
+                  {t(lang, challengeClip === clip.key ? 'challengePause' : 'challengeListen')} {clip.key}
+                </button>
+                <div className="challenge-record">{challengeGuess ? <><strong>{clip.site.name} · {clip.code}</strong><span>{t(lang, 'challengeRichness')}: {number(clip.signal.richness, lang)} · {formatObservationDate(clip.row.date, lang)}</span></> : <span>{t(lang, 'challengeRecordPrompt')}</span>}</div>
+              </article>)}
+            </div>
+            <p className="challenge-audio-note">{t(lang, 'challengeAudioNote')}</p>
+            {challengeAudioError && <p className="audio-error" role="alert">{t(lang, 'audioError')}</p>}
+            {!challengeGuess ? <div className="challenge-decision">
+              <div><span className="eyebrow light">02 / 03 · {t(lang, 'challengeGuessEyebrow')}</span><h3>{t(lang, 'challengeQuestion')}</h3></div>
+              <div className="challenge-choices"><button type="button" onClick={() => revealChallenge('A')}>{t(lang, 'challengeChoose')} A</button><button type="button" onClick={() => revealChallenge('B')}>{t(lang, 'challengeChoose')} B</button></div>
+            </div> : <div className="challenge-reveal" role="status">
+              <span className="eyebrow">03 / 03 · {t(lang, 'challengeRevealEyebrow')}</span>
+              <h3>{t(lang, challengeGuess === 'B' ? 'challengeCorrect' : 'challengeAnswer')} <strong>B · {challengePair?.[1]?.site.name}</strong></h3>
+              <p>{t(lang, 'challengeExplanation')} {challengePair?.[0]?.signal.richness} {t(lang, 'challengeVersus')} {challengePair?.[1]?.signal.richness} {t(lang, 'challengeRecordedKinds')}</p>
+              <p className="challenge-caveat">{t(lang, 'challengeCaveat')}</p>
+              <div className="challenge-links"><button type="button" onClick={() => { setChallengeGuess(null); stopChallenge(); }}>{t(lang, 'challengeRetry')}</button><a href="#explore" onClick={() => exploreChallengeSite('C20')}>{t(lang, 'challengeExplore')} <ArrowRight size={14} /></a><a href="https://www.oneaquahealth.eu/project-solutions/" target="_blank" rel="noreferrer">{t(lang, 'challengeLearnMore')} <ArrowUpRight size={14} /></a></div>
+            </div>}
+          </div>
         </section>
 
         <section id="explore" className="explore-section" aria-labelledby="explore-title">
