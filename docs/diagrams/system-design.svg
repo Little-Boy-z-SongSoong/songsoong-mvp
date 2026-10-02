@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1160" viewBox="0 0 1600 1160" role="img">
+<defs>
+              <linearGradient id="river" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#A9DBE7"/>
+                <stop offset="1" stop-color="#D8EEE6"/>
+              </linearGradient>
+              <linearGradient id="deep" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#1A5549"/>
+                <stop offset="1" stop-color="#173C36"/>
+              </linearGradient>
+              <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+                <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#153F36" flood-opacity="0.075"/>
+              </filter>
+              <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5"
+                markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#4E9189"/>
+              </marker>
+            </defs>
+<desc>SongSoong data-to-music system design: city and site choose a composed musical identity; biological quality becomes ecological stress and musical tension; richness controls accent density; nitrate contributes relative texture without a safety claim. Tone.js renders locally.</desc>
+<rect x="0" y="0" width="1600" height="1160" rx="0" fill="#F6F7F0" stroke="none" stroke-width="1"/>
+<path d="M -20 136 C 190 39 381 162 578 107 S 924 35 1154 97 S 1440 144 1645 45" fill="none" stroke="#D6EDE7" stroke-width="52" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+<path d="M -20 148 C 190 51 381 174 578 119 S 924 47 1154 109 S 1440 156 1645 57" fill="none" stroke="#F9FBF7" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+<circle cx="1490" cy="820" r="160" fill="#EAF2E9" stroke="none" stroke-width="1"/>
+<circle cx="1500" cy="810" r="124" fill="#F6F7F0" stroke="none" stroke-width="1"/>
+<rect x="70" y="38" width="234" height="34" rx="17" fill="#1E5D4D" stroke="none" stroke-width="1"/>
+<text x="187.0" y="61" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="0">SONGSOONG  /  SYSTEM DESIGN</text>
+<text x="70" y="121" font-family="Georgia, serif" font-size="43" font-weight="400" fill="#173C36" text-anchor="start" letter-spacing="0">How a water record becomes a song</text>
+<text x="72" y="159" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">Every audible change can be traced back to a published observation or a composed city theme.</text>
+<path d="M 70 184 H 1530" fill="none" stroke="#CFDCD1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<circle cx="87" cy="223" r="17" fill="#1E5D4D" stroke="none" stroke-width="1"/>
+<text x="87" y="229" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="0">01</text>
+<text x="118" y="219" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="800" fill="#1E5D4D" text-anchor="start" letter-spacing="1.7">OBSERVE</text>
+<text x="118" y="242" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">ENORA record</text>
+<circle cx="577" cy="223" r="17" fill="#1E5D4D" stroke="none" stroke-width="1"/>
+<text x="577" y="229" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="0">02</text>
+<text x="608" y="219" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="800" fill="#1E5D4D" text-anchor="start" letter-spacing="1.7">INTERPRET</text>
+<text x="608" y="242" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">transparent mapping</text>
+<circle cx="1072" cy="223" r="17" fill="#1E5D4D" stroke="none" stroke-width="1"/>
+<text x="1072" y="229" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="0">03</text>
+<text x="1103" y="219" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="800" fill="#1E5D4D" text-anchor="start" letter-spacing="1.7">HEAR</text>
+<text x="1103" y="242" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">musical result</text>
+<path d="M 516 265 V 922" fill="none" stroke="#DCE7DE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="1" stroke-dasharray="5 8"/>
+<path d="M 1010 265 V 922" fill="none" stroke="#DCE7DE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="1" stroke-dasharray="5 8"/>
+<rect x="70" y="274" width="1460" height="145" rx="22" fill="#FFFFFF" stroke="#CFDCD1" stroke-width="1" filter="url(#shadow)"/>
+<rect x="70" y="274" width="10" height="145" rx="5" fill="#1E5D4D" stroke="none" stroke-width="1"/>
+<circle cx="111" cy="319" r="17" fill="#E5F0E7" stroke="none" stroke-width="1"/>
+<text x="111" y="325" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#1E5D4D" text-anchor="middle" letter-spacing="0">A</text>
+<text x="140" y="325" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#173C36" text-anchor="start" letter-spacing="0">City + site</text>
+<text x="141" y="356" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">Five cities; site code.</text>
+<path d="M 478 346 H 530" fill="none" stroke="#3A8C9B" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrow)"/>
+<text x="560" y="325" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#173C36" text-anchor="start" letter-spacing="0">Composed profile</text>
+<text x="561" y="356" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">Each city has its own scale, chord</text>
+<text x="561" y="379" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">vocabulary, motif and pulse.</text>
+<path d="M 972 346 H 1025" fill="none" stroke="#3A8C9B" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrow)"/>
+<text x="1055" y="325" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#173C36" text-anchor="start" letter-spacing="0">Distinct identity</text>
+<text x="1056" y="356" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">Instrument, melody, rhythm</text>
+<text x="1056" y="379" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">and deterministic site variation.</text>
+<rect x="70" y="439" width="1460" height="145" rx="22" fill="#FFFFFF" stroke="#CFDCD1" stroke-width="1" filter="url(#shadow)"/>
+<rect x="70" y="439" width="10" height="145" rx="5" fill="#3A8C9B" stroke="none" stroke-width="1"/>
+<circle cx="111" cy="484" r="17" fill="#E5F2F5" stroke="none" stroke-width="1"/>
+<text x="111" y="490" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#1E5D4D" text-anchor="middle" letter-spacing="0">B</text>
+<text x="140" y="490" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#173C36" text-anchor="start" letter-spacing="0">Biological rating</text>
+<text x="141" y="521" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">Fish, invertebrates or</text>
+<text x="141" y="544" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">diatoms: High → Bad.</text>
+<path d="M 478 511 H 530" fill="none" stroke="#3A8C9B" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrow)"/>
+<text x="560" y="490" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#173C36" text-anchor="start" letter-spacing="0">Ecological stress</text>
+<text x="561" y="521" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">High .08 · Good .25 · Moderate .49</text>
+<text x="561" y="544" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">Poor .73 · Bad .92</text>
+<path d="M 972 511 H 1025" fill="none" stroke="#3A8C9B" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrow)"/>
+<text x="1055" y="490" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#173C36" text-anchor="start" letter-spacing="0">Musical tension</text>
+<text x="1056" y="521" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">Harmony, register, filter, bass</text>
+<text x="1056" y="544" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">and rough texture change.</text>
+<rect x="70" y="604" width="1460" height="145" rx="22" fill="#FFFFFF" stroke="#CFDCD1" stroke-width="1" filter="url(#shadow)"/>
+<rect x="70" y="604" width="10" height="145" rx="5" fill="#87A86F" stroke="none" stroke-width="1"/>
+<circle cx="111" cy="649" r="17" fill="#E9F1E2" stroke="none" stroke-width="1"/>
+<text x="111" y="655" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#1E5D4D" text-anchor="middle" letter-spacing="0">C</text>
+<text x="140" y="655" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#173C36" text-anchor="start" letter-spacing="0">Recorded richness</text>
+<text x="141" y="686" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">Taxa count where the</text>
+<text x="141" y="709" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">selected signal reports it.</text>
+<path d="M 478 676 H 530" fill="none" stroke="#3A8C9B" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrow)"/>
+<text x="560" y="655" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#173C36" text-anchor="start" letter-spacing="0">Relative density</text>
+<text x="561" y="686" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">Normalize within that biological</text>
+<text x="561" y="709" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">group in the retrieved dataset.</text>
+<path d="M 972 676 H 1025" fill="none" stroke="#3A8C9B" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrow)"/>
+<text x="1055" y="655" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#173C36" text-anchor="start" letter-spacing="0">Signs of life</text>
+<text x="1056" y="686" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">More or fewer bell-like</text>
+<text x="1056" y="709" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">water-drop accents.</text>
+<rect x="70" y="769" width="1460" height="145" rx="22" fill="#FFFFFF" stroke="#CFDCD1" stroke-width="1" filter="url(#shadow)"/>
+<rect x="70" y="769" width="10" height="145" rx="5" fill="#DDBB73" stroke="none" stroke-width="1"/>
+<circle cx="111" cy="814" r="17" fill="#F6EBD2" stroke="none" stroke-width="1"/>
+<text x="111" y="820" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#1E5D4D" text-anchor="middle" letter-spacing="0">D</text>
+<text x="140" y="820" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#173C36" text-anchor="start" letter-spacing="0">Nitrate value</text>
+<text x="141" y="851" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">Show the exact published</text>
+<text x="141" y="874" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">number and record date.</text>
+<path d="M 478 841 H 530" fill="none" stroke="#3A8C9B" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrow)"/>
+<text x="560" y="820" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#173C36" text-anchor="start" letter-spacing="0">Dataset percentile</text>
+<text x="561" y="851" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">Relative rank only; the API gives</text>
+<text x="561" y="874" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">no unit or safety threshold.</text>
+<path d="M 972 841 H 1025" fill="none" stroke="#3A8C9B" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrow)"/>
+<text x="1055" y="820" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#173C36" text-anchor="start" letter-spacing="0">Secondary colour</text>
+<text x="1056" y="851" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">Subtle texture and delay; a</text>
+<text x="1056" y="874" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">relative mood if nitrate-only.</text>
+<rect x="70" y="941" width="1460" height="153" rx="26" fill="#1E5D4D" stroke="none" stroke-width="1"/>
+<path d="M 102 980 C 114 971 125 989 137 980" fill="none" stroke="#A9D9E3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<path d="M 102 990 C 114 981 125 999 137 990" fill="none" stroke="#A9D9E3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<path d="M 102 1000 C 114 991 125 1009 137 1000" fill="none" stroke="#A9D9E3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<text x="154" y="988" font-family="Georgia, serif" font-size="26" font-weight="400" fill="#FFFFFF" text-anchor="start" letter-spacing="0">Listen, compare, understand</text>
+<text x="101" y="1026" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="400" fill="#D4E8E0" text-anchor="start" letter-spacing="0">Tone.js renders the composition locally. The UI shows site, signal, source value and date;</text>
+<text x="101" y="1051" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="400" fill="#D4E8E0" text-anchor="start" letter-spacing="0">a guided A/B challenge reveals two Coimbra records, and the remix is labelled as a simulation.</text>
+<path d="M 70 1122 H 1530" fill="none" stroke="#CFDCD1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<text x="70" y="1146" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" fill="#5A716B" text-anchor="start" letter-spacing="0">SITE PORTRAIT  = mean of available biological ratings; nitrate never overrides that rating.</text>
+<text x="1530" y="1146" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#1E5D4D" text-anchor="end" letter-spacing="0.5">ARTISTIC INTERPRETATION  ·  NOT A SAFETY TEST</text>
+</svg>

@@ -14,6 +14,17 @@ The closing link leads to the official OneAquaHealth Citizen Science App for vis
 
 For the project story and a 3–5 minute demo outline, see [DEVPOST_SUBMISSION.md](DEVPOST_SUBMISSION.md).
 
+## Architecture diagrams
+
+The presentation-ready diagrams are available as high-resolution PNGs and editable SVGs:
+
+- [System architecture](docs/diagrams/architecture.png) · [SVG source](docs/diagrams/architecture.svg)
+- [Data-to-music system design](docs/diagrams/system-design.png) · [SVG source](docs/diagrams/system-design.svg)
+
+![SongSoong system architecture from ENORA API to in-browser music](docs/diagrams/architecture.png)
+
+![SongSoong mapping from water observations to musical features](docs/diagrams/system-design.png)
+
 ## Run locally
 
 ```bash

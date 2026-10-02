@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1020" viewBox="0 0 1600 1020" role="img">
+<defs>
+              <linearGradient id="river" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#A9DBE7"/>
+                <stop offset="1" stop-color="#D8EEE6"/>
+              </linearGradient>
+              <linearGradient id="deep" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#1A5549"/>
+                <stop offset="1" stop-color="#173C36"/>
+              </linearGradient>
+              <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+                <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#153F36" flood-opacity="0.075"/>
+              </filter>
+              <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5"
+                markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#4E9189"/>
+              </marker>
+            </defs>
+<desc>SongSoong system architecture: ENORA public API supplies a build-time validated snapshot and runtime Vercel proxy. The React application maps data to Tone.js music and a visualizer in the user's browser.</desc>
+<rect x="0" y="0" width="1600" height="1020" rx="0" fill="#F6F7F0" stroke="none" stroke-width="1"/>
+<path d="M -20 136 C 190 39 381 162 578 107 S 924 35 1154 97 S 1440 144 1645 45" fill="none" stroke="#D6EDE7" stroke-width="52" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+<path d="M -20 148 C 190 51 381 174 578 119 S 924 47 1154 109 S 1440 156 1645 57" fill="none" stroke="#F9FBF7" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+<circle cx="1490" cy="820" r="160" fill="#EAF2E9" stroke="none" stroke-width="1"/>
+<circle cx="1500" cy="810" r="124" fill="#F6F7F0" stroke="none" stroke-width="1"/>
+<rect x="70" y="38" width="234" height="34" rx="17" fill="#1E5D4D" stroke="none" stroke-width="1"/>
+<text x="187.0" y="61" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="0">SONGSOONG  /  ARCHITECTURE</text>
+<text x="70" y="121" font-family="Georgia, serif" font-size="43" font-weight="400" fill="#173C36" text-anchor="start" letter-spacing="0">River observations, heard in the browser</text>
+<text x="72" y="159" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">A small, transparent pipeline from published field data to an interactive soundscape.</text>
+<path d="M 70 184 H 1530" fill="none" stroke="#CFDCD1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<circle cx="86" cy="225" r="16" fill="#1E5D4D" stroke="none" stroke-width="1"/>
+<text x="86" y="231" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="0">01</text>
+<text x="114" y="231" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#1E5D4D" text-anchor="start" letter-spacing="1.4">PUBLISHED DATA</text>
+<circle cx="496" cy="225" r="16" fill="#1E5D4D" stroke="none" stroke-width="1"/>
+<text x="496" y="231" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="0">02</text>
+<text x="524" y="231" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#1E5D4D" text-anchor="start" letter-spacing="1.4">DELIVERY</text>
+<circle cx="1006" cy="225" r="16" fill="#1E5D4D" stroke="none" stroke-width="1"/>
+<text x="1006" y="231" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="0">03</text>
+<text x="1034" y="231" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#1E5D4D" text-anchor="start" letter-spacing="1.4">LISTENING EXPERIENCE</text>
+<rect x="70" y="258" width="340" height="395" rx="25" fill="#FFFFFF" stroke="#CFDCD1" stroke-width="1" filter="url(#shadow)"/>
+<rect x="94" y="283" width="104" height="34" rx="17" fill="#E5F2F5" stroke="none" stroke-width="1"/>
+<text x="146.0" y="306" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#1E5D4D" text-anchor="middle" letter-spacing="0">ENORA API</text>
+<text x="94" y="347" font-family="Georgia, serif" font-size="29" font-weight="400" fill="#173C36" text-anchor="start" letter-spacing="0">OneAquaHealth</text>
+<text x="94" y="379" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">published observations</text>
+<path d="M 94 397 H 384" fill="none" stroke="#CFDCD1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<circle cx="106" cy="424" r="5" fill="#3A8C9B" stroke="none" stroke-width="1"/>
+<text x="123" y="418" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#173C36" text-anchor="start" letter-spacing="0">/api/cities/all</text>
+<text x="123" y="441" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">5 research cities</text>
+<path d="M 94 468 H 384" fill="none" stroke="#CFDCD1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<circle cx="106" cy="495" r="5" fill="#3A8C9B" stroke="none" stroke-width="1"/>
+<text x="123" y="489" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#173C36" text-anchor="start" letter-spacing="0">/api/sites/all</text>
+<text x="123" y="512" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">sampling sites + coordinates</text>
+<path d="M 94 539 H 384" fill="none" stroke="#CFDCD1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<circle cx="106" cy="566" r="5" fill="#3A8C9B" stroke="none" stroke-width="1"/>
+<text x="123" y="560" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#173C36" text-anchor="start" letter-spacing="0">/api/dashboards/city</text>
+<text x="123" y="583" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">dated ecological records</text>
+<text x="94" y="624" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#1E5D4D" text-anchor="start" letter-spacing="0">Read-only public data</text>
+<rect x="480" y="258" width="420" height="180" rx="25" fill="#FFFFFF" stroke="#CFDCD1" stroke-width="1" filter="url(#shadow)"/>
+<rect x="504" y="281" width="132" height="34" rx="17" fill="#E5F0E7" stroke="none" stroke-width="1"/>
+<text x="570.0" y="304" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#1E5D4D" text-anchor="middle" letter-spacing="0">BUILD TIME</text>
+<text x="504" y="345" font-family="Georgia, serif" font-size="27" font-weight="400" fill="#173C36" text-anchor="start" letter-spacing="0">Validated snapshot</text>
+<text x="504" y="375" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">sync-enora.mjs fetches all three routes,</text>
+<text x="504" y="399" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">then bundles enoraSnapshot.json.</text>
+<circle cx="852" cy="312" r="20" fill="#E5F2F5" stroke="none" stroke-width="1"/>
+<path d="M 844 303 H 860 V 321 H 844 Z M 848 309 H 856 M 848 314 H 856" fill="none" stroke="#1E5D4D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<rect x="480" y="473" width="420" height="180" rx="25" fill="#FFFFFF" stroke="#CFDCD1" stroke-width="1" filter="url(#shadow)"/>
+<rect x="504" y="496" width="126" height="34" rx="17" fill="#E5F2F5" stroke="none" stroke-width="1"/>
+<text x="567.0" y="519" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#1E5D4D" text-anchor="middle" letter-spacing="0">RUN TIME</text>
+<text x="504" y="560" font-family="Georgia, serif" font-size="27" font-weight="400" fill="#173C36" text-anchor="start" letter-spacing="0">Vercel delivery</text>
+<text x="504" y="590" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">Static Vite app + same-origin rewrites</text>
+<text x="504" y="614" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">for three ENORA GET endpoints.</text>
+<circle cx="852" cy="527" r="20" fill="#E5F0E7" stroke="none" stroke-width="1"/>
+<path d="M 842 527 H 861 M 854 519 L 862 527 L 854 535" fill="none" stroke="#1E5D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<path d="M 410 340 H 480" fill="none" stroke="#3A8C9B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrow)"/>
+<text x="445" y="329" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#5A716B" text-anchor="middle" letter-spacing="0">sync</text>
+<path d="M 410 556 H 480" fill="none" stroke="#3A8C9B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrow)"/>
+<text x="445" y="545" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#5A716B" text-anchor="middle" letter-spacing="0">GET</text>
+<path d="M 900 348 H 960 V 418 H 990" fill="none" stroke="#3A8C9B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrow)"/>
+<text x="937" y="333" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#5A716B" text-anchor="middle" letter-spacing="0">fallback</text>
+<path d="M 900 565 H 990" fill="none" stroke="#3A8C9B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrow)"/>
+<text x="945" y="553" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#5A716B" text-anchor="middle" letter-spacing="0">JSON</text>
+<rect x="990" y="258" width="540" height="491" rx="28" fill="#1E5D4D" stroke="none" stroke-width="1" filter="url(#shadow)"/>
+<rect x="1018" y="284" width="137" height="34" rx="17" fill="#D8EDE2" stroke="none" stroke-width="1"/>
+<text x="1086.5" y="307" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#1E5D4D" text-anchor="middle" letter-spacing="0">WEB BROWSER</text>
+<text x="1018" y="349" font-family="Georgia, serif" font-size="31" font-weight="400" fill="#FFFFFF" text-anchor="start" letter-spacing="0">React + Vite interface</text>
+<text x="1018" y="380" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#C8E2D9" text-anchor="start" letter-spacing="0">English / Vietnamese · responsive UI</text>
+<rect x="1018" y="407" width="483" height="63" rx="12" fill="#245B50" stroke="#42796A" stroke-width="1"/>
+<circle cx="1044" cy="438" r="15" fill="#D3EBDF" stroke="none" stroke-width="1"/>
+<text x="1044" y="443" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#1E5D4D" text-anchor="middle" letter-spacing="0">01</text>
+<text x="1072" y="434" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" text-anchor="start" letter-spacing="0">Data adapter</text>
+<text x="1072" y="455" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#D3E8DF" text-anchor="start" letter-spacing="0">city, site, date, ratings, richness, nitrate</text>
+<path d="M 1260 470 V 482" fill="none" stroke="#93C6B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<rect x="1018" y="482" width="483" height="63" rx="12" fill="#245B50" stroke="#42796A" stroke-width="1"/>
+<circle cx="1044" cy="513" r="15" fill="#D3EBDF" stroke="none" stroke-width="1"/>
+<text x="1044" y="518" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#1E5D4D" text-anchor="middle" letter-spacing="0">02</text>
+<text x="1072" y="509" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" text-anchor="start" letter-spacing="0">Sonification rules</text>
+<text x="1072" y="530" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#D3E8DF" text-anchor="start" letter-spacing="0">musical mood + distinct city profile</text>
+<path d="M 1260 545 V 557" fill="none" stroke="#93C6B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<rect x="1018" y="557" width="483" height="63" rx="12" fill="#245B50" stroke="#42796A" stroke-width="1"/>
+<circle cx="1044" cy="588" r="15" fill="#D3EBDF" stroke="none" stroke-width="1"/>
+<text x="1044" y="593" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#1E5D4D" text-anchor="middle" letter-spacing="0">03</text>
+<text x="1072" y="584" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" text-anchor="start" letter-spacing="0">Tone.js / Web Audio</text>
+<text x="1072" y="605" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#D3E8DF" text-anchor="start" letter-spacing="0">procedural music on the listener's device</text>
+<path d="M 1260 620 V 632" fill="none" stroke="#93C6B0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<rect x="1018" y="632" width="483" height="63" rx="12" fill="#245B50" stroke="#42796A" stroke-width="1"/>
+<circle cx="1044" cy="663" r="15" fill="#D3EBDF" stroke="none" stroke-width="1"/>
+<text x="1044" y="668" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#1E5D4D" text-anchor="middle" letter-spacing="0">04</text>
+<text x="1072" y="659" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF" text-anchor="start" letter-spacing="0">FFT visualizer</text>
+<text x="1072" y="680" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#D3E8DF" text-anchor="start" letter-spacing="0">sound-linked motion + visible source values</text>
+<rect x="70" y="707" width="830" height="196" rx="25" fill="#E7F0E6" stroke="#C5D9C8" stroke-width="1"/>
+<path d="M 99 748 C 111 739 122 757 134 748" fill="none" stroke="#3A8C9B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<path d="M 99 758 C 111 749 122 767 134 758" fill="none" stroke="#3A8C9B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<path d="M 99 768 C 111 759 122 777 134 768" fill="none" stroke="#3A8C9B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<text x="154" y="763" font-family="Georgia, serif" font-size="26" font-weight="400" fill="#173C36" text-anchor="start" letter-spacing="0">What the listener can do</text>
+<text x="100" y="806" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">Choose a city, site and recorded signal; hear its composition.</text>
+<text x="100" y="833" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">Compare two real Coimbra records, reveal the evidence, then remix.</text>
+<text x="100" y="860" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">Follow the official citizen-science link to take part.</text>
+<path d="M 990 728 H 945 V 805 H 900" fill="none" stroke="#3A8C9B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="1" marker-end="url(#arrow)"/>
+<rect x="990" y="783" width="540" height="120" rx="22" fill="#FFFFFF" stroke="#CFDCD1" stroke-width="1"/>
+<text x="1018" y="825" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#173C36" text-anchor="start" letter-spacing="0">Design boundary</text>
+<text x="1018" y="852" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">Playback stays in the browser. Historical ratings are not</text>
+<text x="1018" y="875" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#5A716B" text-anchor="start" letter-spacing="0">a real-time sensor reading or a water-safety verdict.</text>
+<path d="M 70 944 H 1530" fill="none" stroke="#CFDCD1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+<text x="70" y="973" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#5A716B" text-anchor="start" letter-spacing="0">SOURCE  api.enora-oah.eu     ·     IMPLEMENTATION  React / Vite / Tone.js / Vercel</text>
+<text x="1530" y="973" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="800" fill="#1E5D4D" text-anchor="end" letter-spacing="2">SONGSOONG</text>
+</svg>

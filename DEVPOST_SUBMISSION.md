@@ -7,6 +7,10 @@ Source code: https://github.com/Little-Boy-z-SongSoong/songsoong-mvp
 
 Screenshots from the live prototype: [opening screen](docs/screenshots/hero.jpg) · [listening challenge and source values](docs/screenshots/challenge-reveal.jpg)
 
+Presentation diagrams: [system architecture](docs/diagrams/architecture.png) · [data-to-music system design](docs/diagrams/system-design.png)
+
+The exact Markdown prepared for Devpost's **Project Story** field is in [DEVPOST_STORY.md](DEVPOST_STORY.md).
+
 ## Short pitch
 
 What if a river's ecological observations could be heard? SongSoong turns published OneAquaHealth data from five European cities into distinct, interactive musical portraits. Listeners can compare two real observations, guess what the difference means, and inspect the records behind the sound.
