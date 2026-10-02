@@ -12,7 +12,7 @@ The guided listening challenge compares two real Coimbra invertebrate observatio
 
 The closing link leads to the official OneAquaHealth Citizen Science App for visitors who want to observe and report their own waterways. SongSoong does not collect citizen observations.
 
-For the project story and a 3–5 minute demo outline, see [DEVPOST_SUBMISSION.md](DEVPOST_SUBMISSION.md).
+For the project story, see [DEVPOST_SUBMISSION.md](DEVPOST_SUBMISSION.md). A timed narration and screen-action guide is in [DEMO_RECORDING_SCRIPT.md](DEMO_RECORDING_SCRIPT.md).
 
 ## Architecture diagrams
 
