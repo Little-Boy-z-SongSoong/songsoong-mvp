@@ -168,6 +168,7 @@ export default function App() {
           <div className="eyebrow light"><span className="eyebrow-line" /> {t(lang, 'heroEyebrow')}</div>
           <h1 id="hero-title">{t(lang, 'heroTitleA')}<br /><em>{t(lang, 'heroTitleB')}</em></h1>
           <p>{t(lang, 'heroDescription')}</p>
+          <a className="hero-project" href="https://www.oneaquahealth.eu/oneaquahealth-ieee-global-hackathon/" target="_blank" rel="noreferrer">{t(lang, 'heroProject')} <ArrowUpRight size={14} aria-hidden="true" /></a>
           <div className="hero-actions">
             <button type="button" className="button button-primary" onClick={toggleAudio} disabled={!signal}>
               {isPlaying ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" />}
@@ -199,6 +200,11 @@ export default function App() {
               </button>;
             })}
           </div>
+        </section>
+
+        <section className="project-section" aria-labelledby="project-title">
+          <div><span className="eyebrow">{t(lang, 'projectEyebrow')}</span><h2 id="project-title">{t(lang, 'projectTitle')}</h2></div>
+          <div className="project-story"><p>{t(lang, 'projectDescription')}</p><div className="project-links"><a href="https://www.oneaquahealth.eu/" target="_blank" rel="noreferrer">{t(lang, 'projectLink')} <ArrowUpRight size={15} aria-hidden="true" /></a><a href="https://api.enora-oah.eu/swagger-ui/index.html" target="_blank" rel="noreferrer">{t(lang, 'projectDataLink')} <ArrowUpRight size={15} aria-hidden="true" /></a></div></div>
         </section>
 
         <section id="explore" className="explore-section" aria-labelledby="explore-title">
