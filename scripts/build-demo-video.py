@@ -186,7 +186,7 @@ async def main():
     untrimmed = OUT / "SongSoong_Devpost_Demo_untrimmed.mp4"
     run("ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", str(concat_file),
         "-c", "copy", "-movflags", "+faststart", str(untrimmed))
-    target = ROOT / "public-live/demo/songsoong-demo.mp4"
+    target = ROOT / "demo/SongSoong_Devpost_Demo.mp4"
     target.parent.mkdir(parents=True, exist_ok=True)
     run("ffmpeg", "-y", "-hide_banner", "-loglevel", "error", "-i", str(untrimmed),
         "-filter_complex", "[0:v]setpts=0.95*PTS[v];[0:a]atempo=1.0526316[a]",

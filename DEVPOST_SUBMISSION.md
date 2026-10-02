@@ -4,7 +4,7 @@ Track 4: Awareness & Storytelling · OneAquaHealth IEEE Global Hackathon 2026
 
 Live prototype: https://songsoong-mvp.vercel.app/  
 Source code: https://github.com/Little-Boy-z-SongSoong/songsoong-mvp
-Demo video (4:48): https://songsoong-mvp.vercel.app/demo/songsoong-demo.mp4
+Demo video (4:48): prepared locally for the team to upload to a video host.
 
 Screenshots from the live prototype: [opening screen](docs/screenshots/hero.jpg) · [listening challenge and source values](docs/screenshots/challenge-reveal.jpg)
 
@@ -53,7 +53,7 @@ Record the browser with sound enabled. Use English, the default language. The ti
 | 2:55–3:35 | Select another city, play its composition, and show its different character. Move the remix slider, then return to source data. | “Each city has a distinct musical voice. The remix invites exploration, but is explicitly hypothetical; it never changes the source value.” |
 | 3:35–4:10 | Show the mapping cards, the official citizen science link, and API/photo credits. Optionally switch to Vietnamese and back. | “The mapping is visible, the interface supports English and Vietnamese, and listeners can continue with OneAquaHealth’s citizen science app.” |
 
-The repository includes a 4:48 narrated demo with two audio clips captured from SongSoong itself. The direct MP4 above is a fallback link; Devpost's embedded video field still needs an accepted video-host link. Confirm the live site and video open in an incognito window before final submission.
+The team has a local 4:48 narrated demo with two audio clips captured from SongSoong itself. Upload it to an accepted video host, paste that URL into Devpost's video field, and confirm the live site and video open in an incognito window before final submission.
 
 ### Record the demo on Windows with the real music
 

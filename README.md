@@ -2,7 +2,7 @@
 
 An interactive river soundscape built from published ENORA observations. Select a city and sampling site to hear a composition built from its available ecological signals. Isolate each signal to hear its contribution. The interface defaults to English and supports Vietnamese.
 
-[Try the live prototype](https://songsoong-mvp.vercel.app/) · [Watch the 4:48 demo](https://songsoong-mvp.vercel.app/demo/songsoong-demo.mp4) · [Read the submission story](DEVPOST_SUBMISSION.md)
+[Try the live prototype](https://songsoong-mvp.vercel.app/) · [Read the submission story](DEVPOST_SUBMISSION.md)
 
 ![SongSoong opening screen with ENORA data connected](docs/screenshots/hero.jpg)
 
