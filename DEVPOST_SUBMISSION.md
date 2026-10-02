@@ -50,4 +50,13 @@ Record the browser with sound enabled. Use English, the default language. The ti
 
 Before submitting: record and upload the actual video, confirm the live site opens in an incognito window, and paste the video, prototype, and repository links into the Devpost project. Do not describe this script as a completed video.
 
+### Record the demo on Windows with the real music
+
+1. Open the live prototype in a maximized browser window. Check that **Listen to A** and **Listen to B** are audible before recording.
+2. Press **Windows + G**, open **Settings → Capturing**, and choose **All** for audio so the recording includes the computer's sound. Make a short trial clip and listen back to confirm the music is present.
+3. Press **Windows + Alt + R** to start recording. Follow the timeline above. Use **Windows + Alt + M** if you need to toggle microphone narration. Press **Windows + Alt + R** again to stop.
+4. Find the MP4 in **Videos/Captures**. Watch the full file before uploading: verify that A and B sound different, the Good/Poor and 39/17 values are readable, no notifications or private tabs appear, and the total length is 3–5 minutes.
+
+Windows recording steps: https://support.microsoft.com/en-us/accessibility/windows/use-a-screen-reader-to-record-your-screen-with-xbox-game-bar
+
 Official submission requirements: https://oneaquahealth-ieee-hackathon.devpost.com/
