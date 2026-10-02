@@ -148,7 +148,7 @@ export default function App() {
     <header className="site-header">
       <div className="site-header-inner">
         <a href="#top" className="brand" aria-label="SongSoong">
-          <span className="brand-icon"><Waves size={24} strokeWidth={1.8} /></span>
+          <span className="brand-icon"><img src="/favicon.png" alt="" /></span>
           <span><strong>SongSoong</strong><small>{t(lang, 'brandLine')}</small></span>
         </a>
         <div className="header-actions">
@@ -311,6 +311,6 @@ export default function App() {
       </div>
     </main>
 
-    <footer className="site-footer"><div><strong>SongSoong</strong><span>{t(lang, 'footerLine')}</span></div><div><span>{t(lang, 'dataSource')}: <a href="https://api.enora-oah.eu/swagger-ui/index.html" target="_blank" rel="noreferrer">ENORA API <ArrowUpRight size={12} /></a></span><span>{t(lang, 'photoSource')}: <a href={cityVisual.source} target="_blank" rel="noreferrer">OneAquaHealth <ArrowUpRight size={12} /></a></span><small>{t(lang, 'dataCaveat')}</small></div></footer>
+    <footer className="site-footer"><div className="footer-brand"><img src="/favicon.png" alt="" /><div><strong>SongSoong</strong><span>{t(lang, 'footerLine')}</span></div></div><div><span>{t(lang, 'dataSource')}: <a href="https://api.enora-oah.eu/swagger-ui/index.html" target="_blank" rel="noreferrer">ENORA API <ArrowUpRight size={12} /></a></span><span>{t(lang, 'photoSource')}: <a href={cityVisual.source} target="_blank" rel="noreferrer">OneAquaHealth <ArrowUpRight size={12} /></a></span><small>{t(lang, 'dataCaveat')}</small></div></footer>
   </div>;
 }

@@ -16,7 +16,8 @@ a { color: inherit; }
 .site-header { position: relative; z-index: 3; background: #14362f; color: #f7f5e9; }
 .site-header-inner { max-width: 1440px; margin: auto; min-height: 77px; padding: 12px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; }
-.brand-icon { width: 42px; height: 42px; border: 1px solid rgba(238,245,222,.44); border-radius: 50%; display: grid; place-items: center; color: #d5e8d6; }
+.brand-icon { width: 42px; height: 42px; flex: none; overflow: hidden; border: 1px solid rgba(238,245,222,.44); border-radius: 50%; display: grid; place-items: center; background: #fff; }
+.brand-icon img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .brand strong { display: block; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 30px; font-weight: 700; line-height: .85; letter-spacing: -.04em; }
 .brand small { display: block; margin-top: 5px; font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: .16em; color: #bdcfba; }
 .header-actions { display: flex; align-items: center; gap: 12px; }
@@ -166,6 +167,9 @@ a { color: inherit; }
 .show-records:hover { background: #ebf4e7; }
 .site-footer { display: flex; justify-content: space-between; gap: 25px; padding: 32px max(32px, calc((100vw - 1376px)/2)); background: #14362f; color: #eef4e9; }
 .site-footer > div { display: flex; flex-direction: column; gap: 6px; }
+.site-footer .footer-brand { flex-direction: row; align-items: center; gap: 17px; }
+.footer-brand > img { display: block; width: 54px; height: 54px; object-fit: contain; border-radius: 50%; background: white; }
+.footer-brand > div { display: flex; flex-direction: column; gap: 6px; }
 .site-footer strong { font: 700 30px/.9 'Cormorant Garamond', Georgia, serif; }
 .site-footer span { font-size: 11px; }
 .site-footer > div:last-child { max-width: 580px; }
@@ -213,6 +217,7 @@ a { color: inherit; }
   .record-summary { min-height: 230px; }
   .record-list-header, .record-row { grid-template-columns: 100px 1fr; gap: 10px; padding: 12px; }
   .site-footer { display: block; padding: 30px 20px; }
+  .footer-brand > img { width: 48px; height: 48px; }
   .site-footer > div:last-child { margin-top: 25px; }
 }
 @media (max-width: 360px) {
