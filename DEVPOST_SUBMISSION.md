@@ -19,6 +19,8 @@ Freshwater monitoring results can be hard for people outside research to engage 
 
 Visitors choose among Oslo, Benevento, Ghent, Toulouse, and Coimbra, then select a real sampling site. The app turns available biological ratings into harmonic character and pulse, recorded organism richness into the density of small sound accents, and nitrate into a relative tonal colour. Each city has its own composition, rhythm, and lead sound. Visitors can isolate a signal, inspect its value and observation date, try a clearly marked hypothetical remix, and open the site on a map.
 
+At the end of the experience, visitors can follow a clearly labelled link to the official OneAquaHealth Citizen Science App to continue learning and contribute their own observations. SongSoong itself does not collect or submit observations.
+
 A guided listening challenge asks visitors to hear two Coimbra invertebrate observations collected on 6 June 2023. Conraria (C17, record 786) is rated Good with recorded richness 39; Corujeira (C20, record 790) is rated Poor with recorded richness 17. After hearing A and B, the visitor guesses which rating indicates greater ecological pressure. The reveal shows the actual records and explains the musical differences. This interaction gives a short, repeatable way to introduce both the sound and its scientific limits.
 
 ### Data and technical approach
@@ -42,7 +44,7 @@ Record the browser with sound enabled. Use English, the default language. The ti
 | 1:20–1:55 | Choose B. Show the reveal and point to C17 Good/39 and C20 Poor/17. | “B represents the Poor rating. The melody is lower and the pulse is heavier; the lower recorded richness reduces the small sound accents. The result describes this organism group, not whether the water is safe to use.” |
 | 1:55–2:55 | Click **Explore C20 record**. Show its rating, date, sound explanation, and source records. Isolate another available signal and play the observation. | “Every musical choice leads back to a published observation. Visitors can separate signals rather than taking one composition as a single official quality score.” |
 | 2:55–3:35 | Select another city, play its composition, and show its different character. Move the remix slider, then return to source data. | “Each city has a distinct musical voice. The remix invites exploration, but is explicitly hypothetical; it never changes the source value.” |
-| 3:35–4:10 | Show the mapping cards and API/photo credits in the footer. Optionally switch to Vietnamese and back. | “The mapping is visible, the interface supports English and Vietnamese, and the observations come from the OneAquaHealth ENORA API.” |
+| 3:35–4:10 | Show the mapping cards, the official citizen science link, and API/photo credits. Optionally switch to Vietnamese and back. | “The mapping is visible, the interface supports English and Vietnamese, and listeners can continue with OneAquaHealth’s citizen science app.” |
 
 Before submitting: record and upload the actual video, confirm the live site opens in an incognito window, and paste the video, prototype, and repository links into the Devpost project. Do not describe this script as a completed video.
 

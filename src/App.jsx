@@ -403,6 +403,12 @@ export default function App() {
             </div>
           </div>
         </section>
+
+        <section className="participate-section" aria-labelledby="participate-title">
+          <div className="participate-mark"><Waves size={29} strokeWidth={1.5} aria-hidden="true" /></div>
+          <div className="participate-copy"><span className="eyebrow">{t(lang, 'participateEyebrow')}</span><h2 id="participate-title">{t(lang, 'participateTitle')}</h2><p>{t(lang, 'participateDescription')}</p></div>
+          <div className="participate-actions"><a className="button button-primary" href="https://apps.oneaquahealth.eu/login" target="_blank" rel="noreferrer">{t(lang, 'participateAction')} <ArrowUpRight size={17} aria-hidden="true" /></a><span>{t(lang, 'participateNote')}</span></div>
+        </section>
       </div>
     </main>
 

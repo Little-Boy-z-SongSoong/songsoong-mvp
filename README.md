@@ -4,6 +4,8 @@ An interactive river soundscape built from published ENORA observations. Select 
 
 The guided listening challenge compares two real Coimbra invertebrate observations from 6 June 2023: Conraria (C17, Good, richness 39) and Corujeira (C20, Poor, richness 17). Visitors hear two 12-second compositions, guess which rating indicates greater ecological pressure, and then see the source values and musical mapping. If the live API changes or is unavailable, this comparison uses the bundled ENORA snapshot. The ratings apply to invertebrates and do not establish whether the water is safe to use.
 
+The closing link leads to the official OneAquaHealth Citizen Science App for visitors who want to observe and report their own waterways. SongSoong does not collect citizen observations.
+
 For the project story and a 3–5 minute demo outline, see [DEVPOST_SUBMISSION.md](DEVPOST_SUBMISSION.md).
 
 ## Run locally

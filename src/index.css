@@ -198,6 +198,14 @@ a { color: inherit; }
 .record-row > span { color: #284b3a; font-size: 11px; line-height: 1.5; }
 .show-records { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; border: none; background: #f7faf3; color: #2a6545; font-size: 11px; font-weight: 700; }
 .show-records:hover { background: #ebf4e7; }
+.participate-section { display: grid; grid-template-columns: 58px minmax(0,1fr) auto; align-items: center; gap: 22px; margin-top: 87px; padding: 32px; border-radius: 18px; background: #dcebe9; }
+.participate-mark { display: grid; place-items: center; width: 58px; height: 58px; border-radius: 50%; background: #c5ded9; color: #1c5a54; }
+.participate-copy h2 { max-width: 680px; margin: 7px 0 9px; color: #17443c; font: 700 clamp(32px,3.1vw,43px)/1 'Cormorant Garamond', Georgia, serif; letter-spacing: -.035em; }
+.participate-copy p { max-width: 700px; margin: 0; color: #3f655c; font-size: 12px; line-height: 1.65; }
+.participate-actions { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.participate-actions .button { white-space: nowrap; background: #214e46; color: #fff; }
+.participate-actions .button:hover { background: #30685c; }
+.participate-actions > span { color: #55786e; font-size: 10px; }
 .site-footer { display: flex; justify-content: space-between; gap: 25px; padding: 32px max(32px, calc((100vw - 1376px)/2)); background: #14362f; color: #eef4e9; }
 .site-footer > div { display: flex; flex-direction: column; gap: 6px; }
 .site-footer .footer-brand { flex-direction: row; align-items: center; gap: 17px; }
@@ -214,6 +222,8 @@ a { color: inherit; }
   .explore-grid { grid-template-columns: 1fr; }
   .landscape-panel { min-height: 540px; }
   .reading-panel { max-width: none; min-height: 0; }
+  .participate-section { grid-template-columns: 58px minmax(0,1fr); }
+  .participate-actions { grid-column: 2; align-items: flex-start; }
 }
 @media (max-width: 700px) {
   .site-header-inner { padding: 12px 18px; min-height: 68px; }
@@ -256,6 +266,9 @@ a { color: inherit; }
   .mapping-card { min-height: 180px; }
   .remix-panel, .record-layout { grid-template-columns: 1fr; }
   .record-summary { min-height: 230px; }
+  .participate-section { grid-template-columns: 1fr; gap: 12px; margin-top: 65px; padding: 25px 21px; }
+  .participate-actions { grid-column: 1; margin-top: 7px; }
+  .participate-actions .button { white-space: normal; }
   .record-list-header, .record-row { grid-template-columns: 100px 1fr; gap: 10px; padding: 12px; }
   .site-footer { display: block; padding: 30px 20px; }
   .footer-brand > img { width: 48px; height: 48px; }
