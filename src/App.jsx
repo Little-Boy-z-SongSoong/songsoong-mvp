@@ -209,6 +209,7 @@ export default function App() {
   const activeQuality = signal?.quality ? qualityName(lang, signal.quality) : null;
 
   return <div className="app-shell" style={{ '--city-accent': city.colors.accent, '--city-photo': `url(${cityVisual.photo})` }}>
+    <a className="skip-link" href="#top">{t(lang, 'skipToContent')}</a>
     <header className="site-header">
       <div className="site-header-inner">
         <a href="#top" className="brand" aria-label="SongSoong">
@@ -224,7 +225,7 @@ export default function App() {
       </div>
     </header>
 
-    <main id="top">
+    <main id="top" tabIndex={-1}>
       <section className="story-hero" aria-labelledby="hero-title">
         <img className="story-hero-photo" src={cityVisual.photo} alt={cityVisual.photoAlt[lang]} />
         <div className="story-hero-overlay" />

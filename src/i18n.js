@@ -1,7 +1,7 @@
 const dict = {
   vi: {
     pageTitle: 'SongSoong — Giai điệu của dòng sông', pageDescription: 'SongSoong diễn giải dữ liệu quan trắc OneAquaHealth thành âm nhạc. Chọn điểm lấy mẫu thật và lắng nghe các tín hiệu sinh thái.',
-    brandLine: 'NGHE DÒNG SÔNG KỂ CHUYỆN', changeLanguage: 'Chuyển sang tiếng Anh', apiConnected: 'Đã kết nối dữ liệu', savedSnapshot: 'Dữ liệu đã lưu',
+    brandLine: 'NGHE DÒNG SÔNG KỂ CHUYỆN', skipToContent: 'Bỏ qua đến nội dung chính', changeLanguage: 'Chuyển sang tiếng Anh', apiConnected: 'Đã kết nối dữ liệu', savedSnapshot: 'Dữ liệu đã lưu',
     heroEyebrow: 'DÒNG SÔNG · DỮ LIỆU · ÂM NHẠC', heroTitleA: 'Mỗi dòng sông', heroTitleB: 'có một giai điệu.',
     heroDescription: 'Chọn một điểm lấy mẫu có thật. Lắng nghe đánh giá sinh thái, độ phong phú loài và nitrate biến thành hòa âm, nhịp điệu và lớp âm.',
     heroProjectTrack: 'Track 4 · Nhận thức & Kể chuyện',
@@ -60,7 +60,7 @@ const dict = {
   },
   en: {
     pageTitle: 'SongSoong — Hear the river', pageDescription: 'SongSoong turns OneAquaHealth waterway observations into music. Choose a real sampling site and hear its ecological signals.',
-    brandLine: 'HEAR THE RIVER TELL ITS STORY', changeLanguage: 'Switch to Vietnamese', apiConnected: 'Data connected', savedSnapshot: 'Saved data',
+    brandLine: 'HEAR THE RIVER TELL ITS STORY', skipToContent: 'Skip to main content', changeLanguage: 'Switch to Vietnamese', apiConnected: 'Data connected', savedSnapshot: 'Saved data',
     heroEyebrow: 'RIVER · DATA · MUSIC', heroTitleA: 'Every river', heroTitleB: 'has a melody.',
     heroDescription: 'Choose a real sampling site. Hear ecological ratings, species richness and nitrate become harmony, rhythm and layers of sound.',
     heroProjectTrack: 'Track 4 · Awareness & Storytelling',
