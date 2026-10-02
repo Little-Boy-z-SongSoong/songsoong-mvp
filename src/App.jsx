@@ -56,12 +56,19 @@ export default function App() {
   const records = useMemo(() => observationsForSite(overview, site?.code), [overview, site?.code]);
   const signals = useMemo(() => signalsForSite(overview, site?.code), [overview, site?.code]);
   const siteComposition = useMemo(() => compositionForSite(signals), [signals]);
-  const signal = signalKind === 'site' ? siteComposition : signals.find((item) => item.kind === signalKind) || siteComposition;
+  const signal = signalKind === 'site' && siteComposition?.basis === 'nitrate'
+    ? signals.find((item) => item.kind === 'nitrate')
+    : signalKind === 'site' ? siteComposition : signals.find((item) => item.kind === signalKind) || siteComposition;
   const stress = remixStress ?? signal?.stress ?? 0.5;
   const richness = signal?.layerDensity ?? 0.4;
   const nitrateRank = signal?.kind === 'site' || signal?.kind === 'nitrate' ? signal?.percentile ?? null : null;
   const mood = stressMood(stress);
   const nitrateOnly = signal?.kind === 'nitrate' || signal?.basis === 'nitrate';
+  const compositionTitle = nitrateOnly
+    ? remixStress === null
+      ? `nitrateMood_${nitrateRank < 0.34 ? 'low' : nitrateRank < 0.67 ? 'middle' : 'high'}`
+      : `remixMood_${mood}`
+    : `mood_${mood}`;
   const condition = remixStress === null && nitrateOnly ? 'nitrate' : mood;
   const conditionText = remixStress !== null ? `remixConditionText_${mood}` : signal?.kind === 'site' && !nitrateOnly ? `siteConditionText_${mood}` : `conditionText_${condition}`;
   const stats = useMemo(() => citySummary(overview, cityId), [overview, cityId]);
@@ -206,7 +213,7 @@ export default function App() {
               <div className="landscape-topline"><span><MapPin size={15} /> {t(lang, 'photoArea')} {city.name[lang]}</span><span>OneAquaHealth</span></div>
               <div className="landscape-content">
                 <span className="eyebrow light">{t(lang, 'currentComposition')}</span>
-                <h3>{t(lang, `mood_${mood}`)}</h3>
+                <h3>{t(lang, compositionTitle)}</h3>
                 <p>{signal ? signal.kind === 'site' ? `${signalName(lang, 'site')} · ${signal.signalCount} ${t(lang, 'available')}` : `${signalName(lang, signal.kind)} · ${formatObservationDate(signal.date, lang)}` : t(lang, 'noObservation')}</p>
                 <span className="city-voice">{t(lang, `cityVoice_${cityId}`)}</span>
                 <div className="sound-visual"><AudioVisualizer analyserData={analyserData} pollution={stress} cityBarColors={city.colors.barColor} /></div>
@@ -225,9 +232,9 @@ export default function App() {
 
               <div className="signal-title"><span>{t(lang, 'chooseSignal')}</span><span>{signals.length} {t(lang, 'available')}</span></div>
               <div className="signal-grid" role="group" aria-label={t(lang, 'chooseSignal')}>
-                <button type="button" className={`signal-choice signal-choice-site ${signal?.kind === 'site' ? 'selected' : ''}`} disabled={!siteComposition} onClick={() => changeSignal('site')} aria-pressed={signal?.kind === 'site'}>
+                {siteComposition?.basis !== 'nitrate' && <button type="button" className={`signal-choice signal-choice-site ${signal?.kind === 'site' ? 'selected' : ''}`} disabled={!siteComposition} onClick={() => changeSignal('site')} aria-pressed={signal?.kind === 'site'}>
                   <Waves size={17} /> <span>{signalName(lang, 'site')}</span><small>{t(lang, 'siteMixHint')}</small>
-                </button>
+                </button>}
                 {signalOrder.map((kind) => {
                   const available = signals.find((item) => item.kind === kind);
                   const Icon = signalIcons[kind];
@@ -286,7 +293,7 @@ export default function App() {
           <div className="section-heading"><div><span className="eyebrow">{t(lang, 'recordEyebrow')}</span><h2 id="record-title">{t(lang, 'recordTitle')}</h2></div><p>{t(lang, 'recordDescription')}</p></div>
           <div className="record-layout">
             <div className="record-summary"><span className="eyebrow">{city.name[lang]}</span><strong>{stats.sites}</strong><span>{t(lang, 'samplingSites')}</span><div className="record-summary-divider" /><strong>{stats.observations}</strong><span>{t(lang, 'observations')}</span><small>{t(lang, 'latestRecord')}: {formatObservationDate(stats.latestDate, lang)}</small></div>
-            <div className="record-list"><div className="record-list-header"><span>{site?.name || '—'}</span><span>{records.length} {t(lang, 'records')}</span></div>
+            <div className="record-list"><div className="record-list-header"><span>{site?.name || '—'}</span><span>{records.length} {t(lang, records.length === 1 ? 'record' : 'records')}</span></div>
               {records.slice(0, showAllRecords ? undefined : 5).map((row) => <div className="record-row" key={row.id}><time>{formatObservationDate(row.date, lang)}</time><span>{rowSummary(row, lang)}</span></div>)}
               {records.length > 5 && <button type="button" className="show-records" onClick={() => setShowAllRecords(!showAllRecords)}>{t(lang, showAllRecords ? 'showLess' : 'showAll')} <ArrowRight size={16} /></button>}
             </div>

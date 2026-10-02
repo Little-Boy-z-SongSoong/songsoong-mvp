@@ -198,3 +198,6 @@ a { color: inherit; }
   .site-footer { display: block; padding: 30px 20px; }
   .site-footer > div:last-child { margin-top: 25px; }
 }
+@media (max-width: 360px) {
+  .reading-panel { min-height: 960px; }
+}
