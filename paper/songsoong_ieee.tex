@@ -1,0 +1,157 @@
+% IEEE two-column presentation style for the SongSoong Devpost project.
+% This manuscript has not been submitted to or accepted by an IEEE venue.
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{balance}
+
+\begin{document}
+
+\title{SongSoong: Transparent Sonification of Urban Stream Observations for Public Engagement}
+
+\author{\IEEEauthorblockN{Vo Duc Hieu, Tran Minh Hoang, Nguyen Vo Dinh Nguyen,\\
+Vo Duy Nguyen, and Le Huynh Dang}
+\IEEEauthorblockA{\texttt{voduchieu42@gmail.com}, \texttt{andyjobs2023@gmail.com},\\
+\texttt{nguyenvodinhkhoi92@gmail.com}, \texttt{duyynguyen1303@gmail.com},\\
+\texttt{lehuynhdang.um2023@gmail.com}}}
+
+\maketitle
+
+\begin{abstract}
+Environmental observations can be difficult to explore when they are presented only as tables and categorical ratings. This paper presents SongSoong, a bilingual browser-based prototype that turns published OneAquaHealth urban waterway observations into interactive musical portraits while retaining access to the underlying records. Biological quality categories control a compositional stress parameter, recorded organism richness controls accent density, and nitrate contributes a separately labelled relative texture. Five city-specific scores provide different musical identities. The application retrieves cities, sites, and observations through the ENORA application programming interface and uses a bundled snapshot when the service is unavailable. A snapshot examined for this paper contained five cities, 106 sampling sites, and 221 observations. A guided comparison uses two same-day Coimbra macroinvertebrate observations rated Good and Poor, with recorded richness of 39 and 17, respectively. Five automated tests validate mapping and record-selection behavior. These tests establish implementation consistency; they do not establish perceptual accuracy, learning outcomes, or water safety. SongSoong is intended as an inspectable invitation to engage with ecological data, not as an environmental assessment instrument.
+\end{abstract}
+
+\begin{IEEEkeywords}
+sonification, auditory display, urban waterways, environmental communication, citizen science
+\end{IEEEkeywords}
+
+\section{Introduction}
+OneAquaHealth studies urban freshwater ecosystems and human well-being across five European research cities: Coimbra, Toulouse, Benevento, Ghent, and Oslo~\cite{oah-cities}. Its public ENORA interface exposes site-level observations that include biological quality categories, organism richness, and nitrate readings~\cite{enora-api}. Such records have scientific value, but an unfamiliar visitor may need an entry point before interpreting an ecological table. Sonification uses non-speech sound to convey data~\cite{handbook}; prior work has argued that public-facing sonification must account for the listening context and the non-specialist audience~\cite{stpierre2016}.
+
+SongSoong addresses the design question: \emph{Can a musical encounter motivate a visitor to compare real freshwater observations while keeping the data and the limits of the interpretation visible?} The prototype offers a city-specific soundscape, a guided two-record listening comparison, and direct access to source values and dates. Its contribution is an implemented, inspectable mapping rather than a new ecological index or a demonstrated educational effect. The design deliberately separates published measurements from compositional choices and labels the latter as artistic interpretation.
+
+The remainder of this paper describes the data model and sonification rules, the browser architecture and interaction, an implementation-level verification, and the limitations that must guide subsequent evaluation.
+
+\section{Related Work and Design Position}
+The \emph{Sonification Handbook} describes a range of auditory-display techniques and emphasizes that sound mappings should serve the task and listener~\cite{handbook}. St.~Pierre and Droumeva presented a context-sensitive sonification of urban air-pollution data for public engagement, discussing the tension between meaningful mapping and an accessible listening experience~\cite{stpierre2016}. SongSoong applies a similar public-engagement motivation to published freshwater observations, but does not reuse their sound model or claim that musical preference implies data comprehension.
+
+The OneAquaHealth project already provides data dashboards and a Citizen Science App~\cite{oah-solutions}. SongSoong is a separate interpretive prototype built from published ENORA records. It links visitors to the official citizen-science service; it does not collect new observations or submit data on behalf of a visitor. Three design requirements follow: (R1) retain the source record beside every musical interpretation, (R2) produce audible variation without presenting an invented scientific score, and (R3) keep the experience usable when the live read-only interface is temporarily unavailable.
+
+\section{Data and Sonification Method}
+\subsection{Design Process}
+The implementation followed an iterative, source-first process. We inspected the public route responses and identified which observations could be joined to a sampling site and which biological or chemical fields were actually present. We then separated biological ratings from nitrate because the two inputs have different meanings and the available nitrate schema does not support a safety classification. Next, we composed distinct city profiles and checked their clear and strained four-bar score representations programmatically. Finally, we selected a same-day, same-organism Coimbra pair for a traceable listening task. This sequence is a design and implementation process; it is not a human-subjects experiment.
+
+\subsection{Published Observations and Selection}
+The application consumes three ENORA routes: \url{/api/cities/all}, \url{/api/sites/all}, and \url{/api/dashboards/city}~\cite{enora-api}. The bundled snapshot refreshed on 1 October 2026 contained five cities, 106 sites, and 221 observation rows. These counts describe that snapshot, not a permanent size of the upstream dataset. Each row has a site code and observation date; some fields are absent. For each available signal at a selected site, the application takes the most recent row containing that signal, sorting by date and then record identifier. Consequently, signals combined in a site portrait can have different dates. The interface displays the selected value and date and lists source rows so that a visitor can inspect the underlying evidence.
+
+\subsection{Ecological and Relative Inputs}
+For fish, macroinvertebrates, and diatoms, a published categorical quality $q$ is converted to an \emph{artistic stress control} $s(q)$:
+\begin{equation}
+s(q)=\begin{cases}
+0.08,&q=\text{High},\\
+0.25,&q=\text{Good},\\
+0.49,&q=\text{Moderate},\\
+0.73,&q=\text{Poor},\\
+0.92,&q=\text{Bad}.
+\end{cases}
+\label{eq:quality}
+\end{equation}
+These numbers are composition parameters, not ENORA quality scores or validated pollution thresholds. If $K$ biological signals are available, the site portrait uses their arithmetic mean,
+\begin{equation}
+S_{\mathrm{site}}=\frac{1}{K}\sum_{k=1}^{K}s(q_k), \qquad K>0.
+\label{eq:site}
+\end{equation}
+Nitrate does not enter this mean. If nitrate is the only available signal, the interface explicitly labels the portrait as relative rather than a combined ecological assessment.
+
+For an available organism-richness count $r_k$, the sound-layer density is $d_k=\operatorname{clip}(r_k/r_k^{\max},0.1,1)$, where $r_k^{\max}$ is the largest recorded richness for that organism group in the retrieved dataset. The site composition averages densities only over biological signals with numeric richness. Thus a count is encoded relative to the dataset and is not itself a cross-city biodiversity index.
+
+The API schema used by the prototype does not define a nitrate unit or safety threshold. For a nitrate value $v$, the application computes the empirical percentile $p(v)=\#\{x_i\leq v\}/N$ among numeric nitrate readings in the retrieved dataset. This rank contributes a secondary timbral control; in nitrate-only mode, the artistic stress control is $0.1+0.8p(v)$. The exact reported value remains visible. No interpretation of nitrate as a safe or unsafe concentration is made.
+
+\begin{table}[t]
+\caption{Inspectability of the Data-to-Sound Mapping}
+\label{tab:mapping}
+\centering
+\footnotesize
+\begin{tabular}{p{0.21\columnwidth}p{0.27\columnwidth}p{0.35\columnwidth}}
+\toprule
+Published input & Control rule & Audible or visible effect \\
+\midrule
+City and site & Composed city profile; deterministic site-code variation & Instrument, scale, chord vocabulary, rhythm, bass, and motif \\
+Biological category & $s(q)$ and biological mean in (1)--(2) & Clear, shifting, or strained harmony; filter, register, bass, and texture \\
+Organism richness & Within-group normalized density & Frequency of bell-like water-drop accents \\
+Nitrate value & Empirical percentile; separate from biological mean & Secondary texture and delay; relative mood if nitrate-only \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Compositional Rules}
+Each city has a hand-composed profile specifying lead instrument, scale, four-bar chord sequence, motif, accent positions, and bass pattern. The site code seeds a deterministic small motif variation. This means repeated visits to the same record start from a reproducible composition, although the synthesis runs in real time. Quality-related stress selects the clear harmonic set below 0.34 and the strained set at or above 0.66; intermediate stress alternates sets in two-bar blocks. Stress also adjusts low-pass filtering, bass weight, subtle noise texture, and tempo. Richness changes the rate of bell-like accents. These mappings are summarized in Table~\ref{tab:mapping} and implemented in the open source code~\cite{songsoong-code}.
+
+\section{System and Interaction Design}
+\subsection{Architecture}
+The React application is built with Vite and hosted as static assets on Vercel. Three same-origin rewrites forward read-only browser requests to the public ENORA service. A build-time script refreshes a committed JSON snapshot from the same three routes; when a runtime request fails or appears incomplete, the client continues with the bundled snapshot. The UI states whether it is showing API data or saved data. For local Node hosting, an alternative server proxies and caches the same routes for 15 minutes. Figure~\ref{fig:architecture} separates build-time resilience from runtime retrieval. All musical synthesis runs on the listener's device through Tone.js and Web Audio~\cite{tonejs}; the prototype does not upload microphone audio or visitor observations.
+
+\begin{figure}[t]
+\centering
+\footnotesize
+\fbox{\begin{minipage}{0.91\columnwidth}
+\centering
+ENORA public API\\[2pt]
+$\swarrow$ \hspace{0.32\columnwidth} $\searrow$\\[-2pt]
+Build-time JSON snapshot \hspace{0.06\columnwidth} Runtime read-only proxy\\[5pt]
+$\searrow$ \hspace{0.32\columnwidth} $\swarrow$\\[-2pt]
+React data adapter $\longrightarrow$ mapping rules\\[3pt]
+$\longrightarrow$ Tone.js / Web Audio $\longrightarrow$ listener\\[3pt]
+$\longrightarrow$ source values, dates, and visual feedback
+\end{minipage}}
+\caption{SongSoong data paths. The snapshot is a fallback for runtime retrieval; synthesis and playback are local to the browser.}
+\label{fig:architecture}
+\end{figure}
+
+\subsection{Guided Listening and Traceability}
+The interface first invites the visitor to choose one of five cities, then a sampling site and an available signal. The music panel pairs the composition with the published category or value, date, coordinate-based map link, and a short explanation of the mapping. A slider lets visitors alter musical tension, but labels this remix as hypothetical and provides a return-to-data control. English is the default language and Vietnamese is available as a second language.
+
+The guided ``Hear the difference'' interaction holds city, organism group, and observation date constant. Clip A uses Coimbra record 786, site C17 (Conraria), macroinvertebrates rated Good with richness 39 on 6 June 2023. Clip B uses record 790, site C20 (Corujeira), rated Poor with richness 17 on that same date. After two 12-second listening opportunities, the visitor guesses which record indicates greater ecological pressure. The reveal shows the source ratings and counts. Since the clip uses the same city profile, the designed contrast concentrates on the available biological inputs; other site-specific variation is still present. The rating describes the macroinvertebrate observation, not overall drinking-water safety.
+
+\begin{table}[t]
+\caption{Same-Day Coimbra Listening Pair (6 June 2023)}
+\label{tab:pair}
+\centering
+\footnotesize
+\begin{tabular}{lllll}
+\toprule
+Record & Site & Category & Richness & $s(q)$ \\
+\midrule
+786 & C17 & Good & 39 & 0.25 \\
+790 & C20 & Poor & 17 & 0.73 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Implementation-Level Verification}
+We evaluated whether the software implements its stated rules, not whether listeners understand the music. The snapshot contains the five expected cities and the two cited Coimbra rows with the same date and the stated quality and richness values. Five automated Node.js tests pass on the current repository revision: the challenge uses the intended real records; nitrate cannot override a poor biological site portrait; nitrate-only mode remains relative; the five city profiles have distinct four-bar score representations; and clear versus strained inputs change the score representation in each city. These are deterministic software checks. They do not measure perceived distinctness, enjoyment, accessibility, or knowledge gain. The source code and test cases are available for reproduction~\cite{songsoong-code}.
+
+The paired Coimbra case provides a concrete trace through the mapping: the Good category maps to $s=0.25$, whereas Poor maps to $s=0.73$ by (1). The second input therefore selects the strained harmonic condition, whereas the first selects the clear condition. The richness counts 39 and 17 are normalized within the macroinvertebrate field and affect accent density. This is an intended design contrast, not evidence that a listener can identify ecological status without the reveal.
+
+\section{Limitations and Future Evaluation}
+The prototype is limited by missing fields, potentially different dates across signals, and the meanings of the original biological categories. A site-level average of available categories is useful as a compositional control but should not be interpreted as an official combined ecological index. The nitrate percentile depends on which records were retrieved and cannot be converted to a health threshold without documented units and domain guidance. Area photographs illustrate each city rather than the precise sample point. Browser audio also requires an explicit user gesture and working output hardware~\cite{tonejs}.
+
+No controlled user study has been completed. A future evaluation should test whether the A/B reveal improves recognition of the \emph{meaning and limits} of a macroinvertebrate rating compared with a data-only presentation. A preregistered comparison could collect comprehension answers, confidence, source-link use, and qualitative listening feedback from students or community participants, with accessible non-audio alternatives. Additional matched pairs should be selected only where organism group and date permit a defensible comparison. Such work is required before claiming educational impact or perceptual effectiveness.
+
+\section{Conclusion}
+SongSoong demonstrates an inspectable route from published OneAquaHealth observations to browser-based music. Its primary design choice is to keep musical mapping, source values, and uncertainty visible together. The current implementation covers five city profiles and includes a same-day Coimbra listening comparison; automated tests confirm rule consistency. The project does not establish an environmental diagnosis or a learning effect. Its next scientific step is a listener study that tests whether the guided sound-and-evidence sequence helps people understand ecological observations more accurately.
+
+\balance
+\begin{thebibliography}{00}
+\bibitem{oah-cities} OneAquaHealth, ``Research Cities.'' [Online]. Available: \url{https://www.oneaquahealth.eu/research-cities/}. Accessed: Oct. 2, 2026.
+\bibitem{enora-api} ENORA, ``OneAquaHealth API: Swagger UI.'' [Online]. Available: \url{https://api.enora-oah.eu/swagger-ui/index.html}. Accessed: Oct. 2, 2026.
+\bibitem{handbook} T. Hermann, A. Hunt, and J. G. Neuhoff, Eds., \emph{The Sonification Handbook}. Berlin, Germany: Logos Verlag, 2011.
+\bibitem{stpierre2016} M. St. Pierre and M. Droumeva, ``Sonifying for public engagement: A context-based model for sonifying air pollution data,'' in \emph{Proc. 22nd Int. Conf. Auditory Display (ICAD)}, Canberra, Australia, 2016, doi: 10.21785/icad2016.033.
+\bibitem{oah-solutions} OneAquaHealth, ``Solutions.'' [Online]. Available: \url{https://www.oneaquahealth.eu/project-solutions/}. Accessed: Oct. 2, 2026.
+\bibitem{tonejs} Tone.js, ``Tone.js: Web Audio framework for interactive music.'' [Online]. Available: \url{https://tonejs.github.io/}. Accessed: Oct. 2, 2026.
+\bibitem{songsoong-code} Little Boy'z SongSoong Team, ``SongSoong source code.'' [Online]. Available: \url{https://github.com/Little-Boy-z-SongSoong/songsoong-mvp}. Accessed: Oct. 2, 2026.
+\end{thebibliography}
+
+\end{document}
