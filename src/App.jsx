@@ -12,7 +12,7 @@ const number = (value, lang) => new Intl.NumberFormat(lang === 'vi' ? 'vi-VN' : 
 
 function signalName(lang, kind) { return t(lang, `signal_${kind}`); }
 function qualityName(lang, quality) { return t(lang, `quality_${quality}`); }
-function stressMood(stress) { return stress < 0.31 ? 'gentle' : stress < 0.61 ? 'shifting' : 'tense'; }
+function stressMood(stress) { return stress < 0.34 ? 'gentle' : stress < 0.66 ? 'shifting' : 'tense'; }
 
 function rowSummary(row, lang) {
   const parts = [];
@@ -31,7 +31,7 @@ function DataBadge({ source, lang }) {
 }
 
 export default function App() {
-  const [lang, setLang] = useState('vi');
+  const [lang, setLang] = useState('en');
   const [overview, setOverview] = useState(fallbackOverview);
   const [cityId, setCityId] = useState('ghent');
   const [siteCode, setSiteCode] = useState(null);
@@ -43,7 +43,11 @@ export default function App() {
   const [audioError, setAudioError] = useState(false);
   const audioRef = useRef(null);
 
-  useEffect(() => { document.documentElement.lang = lang; }, [lang]);
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    document.title = t(lang, 'pageTitle');
+    document.querySelector('meta[name="description"]')?.setAttribute('content', t(lang, 'pageDescription'));
+  }, [lang]);
 
   const city = getCityById(cityId);
   const cityVisual = CITY_PRESENTATION[cityId];
@@ -56,6 +60,8 @@ export default function App() {
   const stress = remixStress ?? signal?.stress ?? 0.5;
   const richness = signal?.layerDensity ?? 0.4;
   const mood = stressMood(stress);
+  const condition = remixStress === null && signal?.kind === 'nitrate' ? 'nitrate' : mood;
+  const conditionText = remixStress !== null ? `remixConditionText_${mood}` : signal?.kind === 'site' ? `siteConditionText_${mood}` : `conditionText_${condition}`;
   const stats = useMemo(() => citySummary(overview, cityId), [overview, cityId]);
 
   useEffect(() => {
@@ -200,6 +206,7 @@ export default function App() {
                 <span className="eyebrow light">{t(lang, 'currentComposition')}</span>
                 <h3>{t(lang, `mood_${mood}`)}</h3>
                 <p>{signal ? signal.kind === 'site' ? `${signalName(lang, 'site')} · ${signal.signalCount} ${t(lang, 'available')}` : `${signalName(lang, signal.kind)} · ${formatObservationDate(signal.date, lang)}` : t(lang, 'noObservation')}</p>
+                <span className="city-voice">{t(lang, `cityVoice_${cityId}`)}</span>
                 <div className="sound-visual"><AudioVisualizer analyserData={analyserData} pollution={stress} cityBarColors={city.colors.barColor} /></div>
                 <div className="landscape-bottom"><AudioLines size={16} /> {t(lang, remixStress === null ? 'dataLedMusic' : 'remixMusic')}</div>
               </div>
@@ -238,7 +245,19 @@ export default function App() {
                   {signal.richness !== null && <div><span className="reading-label">{t(lang, 'richness')}</span><strong>{number(signal.richness, lang)}</strong></div>}
                 </>}
               </div> : <p className="empty-reading">{t(lang, 'noObservation')}</p>}
-              <p className="reading-note">{t(lang, signal?.kind === 'site' ? 'siteMixNote' : signal?.kind === 'nitrate' ? 'nitrateNote' : 'qualityNote')}</p>
+              {signal && <div className="sound-reading" aria-live="polite">
+                <span className="eyebrow">{t(lang, 'soundCondition')}</span>
+                <strong>{t(lang, `condition_${condition}`)}</strong>
+                <p>{t(lang, conditionText)}</p>
+                {(signal.kind !== 'nitrate' || remixStress !== null) && <div className="sound-scale" aria-hidden="true">
+                  {['gentle', 'shifting', 'tense'].map((part) => <span key={part} className={mood === part ? 'active' : ''}>{t(lang, `soundScale${part === 'gentle' ? 'Open' : part === 'shifting' ? 'Mixed' : 'Strained'}`)}</span>)}
+                </div>}
+                {signal.kind === 'nitrate' && remixStress === null && <div className="nitrate-rank">
+                  <span>{t(lang, 'relativeRank')}</span><strong>{Math.round(signal.percentile * 100)}%</strong>
+                  <div aria-hidden="true"><span style={{ width: `${signal.percentile * 100}%` }} /></div>
+                </div>}
+              </div>}
+              <p className="reading-note">{t(lang, remixStress !== null ? 'remixNote' : signal?.kind === 'site' ? 'siteMixNote' : signal?.kind === 'nitrate' ? 'nitrateNote' : 'qualityNote')}</p>
               {audioError && <p className="audio-error" role="alert">{t(lang, 'audioError')}</p>}
               <button type="button" className="button play-reading" onClick={toggleAudio} disabled={!signal}>
                 {isPlaying ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" />}

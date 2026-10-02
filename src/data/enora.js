@@ -76,7 +76,7 @@ export function signalsForSite(overview, code) {
     if (field.value) {
       const percentile = nitrates.length > 1 ? nitrates.filter((value) => value <= row.nitrate).length / nitrates.length : 0.5;
       return [{ kind: field.kind, id: row.id, date: row.date, value: row.nitrate,
-        stress: 0.1 + 0.8 * percentile, richness: null, layerDensity: 0.4, isRelative: true }];
+        stress: 0.1 + 0.8 * percentile, percentile, richness: null, layerDensity: 0.4, isRelative: true }];
     }
     const richness = Number.isFinite(row[field.richness]) ? row[field.richness] : null;
     const categoryRichness = overview.observations.map((item) => item[field.richness]).filter((value) => Number.isFinite(value));
