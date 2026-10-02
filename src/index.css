@@ -69,7 +69,7 @@ a { color: inherit; }
 
 .explore-section, .interpret-section, .record-section { padding-top: 88px; scroll-margin-top: 30px; }
 .explore-grid { display: grid; grid-template-columns: minmax(0,1.14fr) minmax(400px,.86fr); gap: 18px; align-items: stretch; }
-.landscape-panel { min-width: 0; min-height: 790px; position: relative; overflow: hidden; border-radius: 18px; color: white; background: #1d443c; }
+.landscape-panel { min-width: 0; min-height: 880px; position: relative; overflow: hidden; border-radius: 18px; color: white; background: #1d443c; }
 .landscape-photo { position: absolute; inset: 0; background-size: cover; background-position: center; filter: saturate(.8); }
 .landscape-topline { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 22px; border-bottom: 1px solid rgba(239,248,232,.22); font: 600 11px 'JetBrains Mono', monospace; background: rgba(7,34,30,.23); }
 .landscape-topline span:first-child { display: inline-flex; align-items: center; gap: 7px; }
@@ -81,7 +81,7 @@ a { color: inherit; }
 .sound-visual { margin-top: 20px; padding: 7px 0; border-top: 1px solid rgba(246,249,235,.35); border-bottom: 1px solid rgba(246,249,235,.35); }
 .sound-visual canvas { height: 80px !important; }
 .landscape-bottom { display: flex; align-items: center; gap: 8px; margin-top: 16px; color: #d9eadb; font-size: 11px; }
-.reading-panel { min-width: 0; min-height: 790px; display: flex; flex-direction: column; border: 1px solid #e1e7da; border-radius: 18px; background: #fffef9; padding: 28px; box-shadow: 0 9px 30px rgba(25,61,48,.06); }
+.reading-panel { min-width: 0; min-height: 880px; display: flex; flex-direction: column; border: 1px solid #e1e7da; border-radius: 18px; background: #fffef9; padding: 28px; box-shadow: 0 9px 30px rgba(25,61,48,.06); }
 .panel-header { display: flex; align-items: center; justify-content: space-between; }
 .panel-index { color: #89998c; font: 600 10px 'JetBrains Mono', monospace; }
 .reading-panel h3 { margin: 9px 0 27px; font: 700 39px/.98 'Cormorant Garamond', Georgia, serif; letter-spacing: -.035em; color: #1d4637; }
@@ -160,7 +160,7 @@ a { color: inherit; }
 .site-footer a { display: inline-flex; align-items: center; gap: 3px; color: #d3e8c6; text-decoration: underline; }
 .site-footer small { color: #b7cbb8; font-size: 10px; line-height: 1.5; }
 
-@media (max-width: 1050px) {
+@media (max-width: 1180px) {
   .city-list { grid-template-columns: repeat(3,minmax(0,1fr)); }
   .explore-grid { grid-template-columns: 1fr; }
   .landscape-panel { min-height: 540px; }
@@ -189,7 +189,7 @@ a { color: inherit; }
   .landscape-panel { min-height: 480px; }
   .landscape-content { left: 20px; right: 20px; }
   .landscape-content h3 { font-size: 52px; }
-  .reading-panel { padding: 21px; }
+  .reading-panel { min-height: 900px; padding: 21px; }
   .interpret-grid { grid-template-columns: 1fr; }
   .mapping-card { min-height: 180px; }
   .remix-panel, .record-layout { grid-template-columns: 1fr; }
