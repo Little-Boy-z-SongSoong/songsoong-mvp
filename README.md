@@ -2,6 +2,8 @@
 
 An interactive river soundscape built from published ENORA observations. Select a city and sampling site to hear a composition built from its available ecological signals. Isolate each signal to hear its contribution. The interface defaults to English and supports Vietnamese.
 
+Created by **Little Boy'z** with project sponsorship from **Lunawave Technologies (LunaTech)**. OneAquaHealth supplies the published research observations and credited area photographs.
+
 [Try the live prototype](https://songsoong-mvp.vercel.app/) · [Read the submission story](DEVPOST_SUBMISSION.md)
 
 ![SongSoong opening screen with ENORA data connected](docs/screenshots/hero.jpg)

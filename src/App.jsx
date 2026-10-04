@@ -409,6 +409,19 @@ export default function App() {
           <div className="participate-copy"><span className="eyebrow">{t(lang, 'participateEyebrow')}</span><h2 id="participate-title">{t(lang, 'participateTitle')}</h2><p>{t(lang, 'participateDescription')}</p></div>
           <div className="participate-actions"><a className="button button-primary" href="https://apps.oneaquahealth.eu/login" target="_blank" rel="noreferrer">{t(lang, 'participateAction')} <ArrowUpRight size={17} aria-hidden="true" /></a><span>{t(lang, 'participateNote')}</span></div>
         </section>
+
+        <section id="credits" className="credits-section" aria-labelledby="credits-title">
+          <div className="section-heading"><div><span className="eyebrow">{t(lang, 'creditsEyebrow')}</span><h2 id="credits-title">{t(lang, 'creditsTitle')}</h2></div><p>{t(lang, 'creditsDescription')}</p></div>
+          <div className="credits-grid">
+            <article className="credits-card team-card">
+              <div className="team-logo"><img src="/little-boyz-logo.png" alt="Little Boy'z logo" loading="lazy" /></div>
+              <div className="credits-card-copy"><span className="eyebrow">{t(lang, 'teamRole')}</span><h3>Little Boy'z</h3><p>{t(lang, 'teamDescription')}</p><p className="team-members">{t(lang, 'teamMembers')}</p><a href="https://github.com/Little-Boy-z-SongSoong/songsoong-mvp" target="_blank" rel="noreferrer">{t(lang, 'teamRepository')} <ArrowUpRight size={15} aria-hidden="true" /></a></div>
+            </article>
+            <article className="credits-card sponsor-card">
+              <span className="eyebrow">{t(lang, 'sponsorRole')}</span><h3>Lunawave Technologies</h3><strong>LunaTech</strong><p>{t(lang, 'sponsorDescription')}</p>
+            </article>
+          </div>
+        </section>
       </div>
     </main>
 

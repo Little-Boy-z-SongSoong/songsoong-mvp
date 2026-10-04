@@ -38,7 +38,7 @@
 
 **Screen:** Show the three mapping cards, move the musical-tension slider once, then show the source-data section and OneAquaHealth Citizen Science link. End on the SongSoong title and URL.
 
-> “The mapping stays visible: biological ratings affect harmony and tension; recorded richness changes accent density; nitrate adds a subtle colour based only on its relative position in this dataset. The API does not provide a nitrate unit or safety threshold here, so we do not label a value safe or unsafe. The remix slider is a hypothetical musical experiment and never changes the published observation. SongSoong reads OneAquaHealth's ENORA data, works from a saved snapshot when the API is unavailable, and creates sound in the browser. Visitors who want to take part can continue through the official OneAquaHealth Citizen Science App. Listen, compare, understand—and check the source.”
+> “The mapping stays visible: biological ratings affect harmony and tension; recorded richness changes accent density; nitrate adds a subtle colour based only on its relative position in this dataset. The API does not provide a nitrate unit or safety threshold here, so we do not label a value safe or unsafe. The remix slider is a hypothetical musical experiment and never changes the published observation. SongSoong reads OneAquaHealth's ENORA data, works from a saved snapshot when the API is unavailable, and creates sound in the browser. Visitors who want to take part can continue through the official OneAquaHealth Citizen Science App. SongSoong was built by Little Boy'z with sponsorship from Lunawave Technologies, LunaTech. Listen, compare, understand—and check the source.”
 
 ## Recording check
 

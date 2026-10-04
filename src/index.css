@@ -206,6 +206,22 @@ a { color: inherit; }
 .participate-actions .button { white-space: nowrap; background: #214e46; color: #fff; }
 .participate-actions .button:hover { background: #30685c; }
 .participate-actions > span { color: #55786e; font-size: 10px; }
+.credits-section { margin-top: 88px; }
+.credits-grid { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(300px,.75fr); gap: 16px; }
+.credits-card { min-width: 0; min-height: 245px; border-radius: 17px; padding: 27px; }
+.team-card { display: flex; align-items: center; gap: 27px; border: 1px solid #dce7d9; background: #fffef9; }
+.team-logo { width: 175px; height: 155px; flex: none; display: grid; place-items: center; overflow: hidden; border: 1px solid #edf0e9; border-radius: 12px; background: white; }
+.team-logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.credits-card .eyebrow { font-size: 10px; }
+.credits-card h3 { margin: 9px 0 7px; color: #1d4637; font: 700 clamp(29px,2.8vw,38px)/.98 'Cormorant Garamond', Georgia, serif; }
+.credits-card p { margin: 0; color: #587262; font-size: 12px; line-height: 1.6; }
+.team-members { margin-top: 13px !important; font-size: 11px !important; }
+.credits-card a { display: inline-flex; align-items: center; gap: 3px; margin-top: 15px; color: #286348; font-size: 11px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.sponsor-card { display: flex; flex-direction: column; align-items: flex-start; background: #214537; color: #edf5e8; }
+.sponsor-card .eyebrow { color: #c4dac2; }
+.sponsor-card h3 { color: #f6f8ee; }
+.sponsor-card strong { display: inline-block; margin: 2px 0 20px; padding: 6px 10px; border: 1px solid #a8c9ac; border-radius: 50px; color: #e1edda; font: 700 11px 'Inter', sans-serif; }
+.sponsor-card p { color: #d2e2d0; }
 .site-footer { display: flex; justify-content: space-between; gap: 25px; padding: 32px max(32px, calc((100vw - 1376px)/2)); background: #14362f; color: #eef4e9; }
 .site-footer > div { display: flex; flex-direction: column; gap: 6px; }
 .site-footer .footer-brand { flex-direction: row; align-items: center; gap: 17px; }
@@ -224,6 +240,7 @@ a { color: inherit; }
   .reading-panel { max-width: none; min-height: 0; }
   .participate-section { grid-template-columns: 58px minmax(0,1fr); }
   .participate-actions { grid-column: 2; align-items: flex-start; }
+  .credits-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 700px) {
   .site-header-inner { padding: 12px 18px; min-height: 68px; }
@@ -269,6 +286,11 @@ a { color: inherit; }
   .participate-section { grid-template-columns: 1fr; gap: 12px; margin-top: 65px; padding: 25px 21px; }
   .participate-actions { grid-column: 1; margin-top: 7px; }
   .participate-actions .button { white-space: normal; }
+  .credits-section { margin-top: 65px; }
+  .credits-card { padding: 22px; }
+  .team-card { display: block; }
+  .team-logo { width: 150px; height: 120px; margin-bottom: 20px; }
+  .sponsor-card { min-height: 205px; }
   .record-list-header, .record-row { grid-template-columns: 100px 1fr; gap: 10px; padding: 12px; }
   .site-footer { display: block; padding: 30px 20px; }
   .footer-brand > img { width: 48px; height: 48px; }

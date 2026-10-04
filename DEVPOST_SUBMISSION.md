@@ -2,6 +2,8 @@
 
 Track 4: Awareness & Storytelling · OneAquaHealth IEEE Global Hackathon 2026
 
+Created by Little Boy'z (five team members). Project sponsor: Lunawave Technologies (LunaTech). OneAquaHealth is the source of ENORA observations and credited area photographs.
+
 Live prototype: https://songsoong-mvp.vercel.app/  
 Source code: https://github.com/Little-Boy-z-SongSoong/songsoong-mvp
 Demo video (4:48): prepared locally for the team to upload to a video host.

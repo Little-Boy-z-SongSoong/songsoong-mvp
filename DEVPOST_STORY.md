@@ -28,6 +28,8 @@ We had to make the compositions pleasant to hear while ensuring that different c
 
 We created five distinct musical identities tied to real OneAquaHealth locations, with a traceable path from a selected observation to the sound and its explanation. The Coimbra A/B challenge lets someone hear a contrast, make a guess, and immediately inspect the Good/Poor ratings and richness values that shaped it. The experience works in English and Vietnamese, includes a visible API/snapshot status, and connects curiosity to OneAquaHealth's citizen-science work.
 
+SongSoong was designed and built by **Little Boy'z**, a five-member team: Vo Duc Hieu, Tran Minh Hoang, Nguyen Vo Dinh Nguyen, Vo Duy Nguyen, and Le Huynh Dang. **Lunawave Technologies (LunaTech)** is the project's sponsor. We credit OneAquaHealth separately as the source of the ENORA observations and area photography used in the experience.
+
 ## What we learned
 
 Sonification is more useful when people can check why something sounds different. A beautiful track alone does not explain an ecological observation; the comparison, date, rating, and transparent mapping make the sound meaningful. We also learned to separate artistic choices from scientific claims: a composed city theme and a relative nitrate texture are storytelling tools, not official water-quality scores.
